@@ -1,0 +1,59 @@
+
+:root {
+    --space-cade: #2b2d42;
+    --manatee: #8d99ae;
+    --alice-blue: #edf2f4;
+    --imperial-red: #ef233c;
+    --amaranth-red: #d90429;
+} 
+.login{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.img-chef{
+    width: 100%;
+}
+.chef{
+    width: 90%;
+}
+.form-email{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.regístrate{
+    margin-top: 1rem;
+}
+.email{
+    margin-top: 1rem;
+}
+.button-login{
+    color: var(--alice-blue);
+    background: var(--amaranth-red);
+    border: none;
+    width: 30%;
+    height: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+.social-media{
+    display: flex;
+    justify-content: space-evenly;
+}
+.face{
+    width: 30%;
+    display: flex;
+    text-align: right;
+}
+.url-face{
+    width: 25%;
+}
+.gmail{
+    width: 35%;
+    display: flex;
+    text-align: left;
+}
+.url-gmail{
+    width: 25%;
+}

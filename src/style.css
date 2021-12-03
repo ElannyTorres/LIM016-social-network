@@ -1,0 +1,104 @@
+:root {
+  --space-cade: #2b2d42;
+  --manatee: #8d99ae;
+  --alice-blue: #edf2f4;
+  --imperial-red: #ef233c;
+  --amaranth-red: #d90429;
+}
+* {
+  margin: 0;
+}
+
+.titleContainer {
+  background-color: var(--space-cade);
+  height: 3rem;
+  width: 100%;
+}
+h1 {
+  color: var(--alice-blue);
+  text-align: center;
+}
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.profilePhoto > img {
+  width: 7rem;
+}
+.name {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.createPostContainer {
+  background-color: var(--manatee);
+  width: 20rem;
+  height: 10rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.textToCreate {
+  background-color: var(--alice-blue);
+  width: 87%;
+  height: 54%;
+  border-radius: 0.7rem;
+}
+.btnToCreate {
+  display: flex;
+  margin-top: 0.7rem;
+  justify-content: space-between;
+}
+.btnPicture,
+.btnShare {
+  background-color: var(--amaranth-red);
+  color: var(--alice-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btnPicture {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+.btnShare {
+  width: 5rem;
+}
+.posted {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.postedOneTitle {
+  background-color: var(--amaranth-red);
+  height: 3rem;
+  width: 18.7rem;
+  text-align: left;
+  padding: 14px 5px 0 17px;
+}
+.postedText {
+  background-color: var(--imperial-red);
+  height: 3rem;
+  width: 20rem;
+}
+.postedBtns {
+  background-color: var(--manatee);
+  height: 3rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+}
+.likePosted,
+.sharePosted {
+  width: 5rem;
+  height: 3rem;
+}

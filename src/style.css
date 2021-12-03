@@ -57,3 +57,9 @@
 .url-gmail{
     width: 25%;
 }
+
+@media only screen and ( min-width: 768px ){
+    .login{
+        flex-direction: row;
+    }   
+}

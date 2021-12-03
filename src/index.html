@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+   
   <link rel="stylesheet" href="style.css" />
   <title>Document</title>
 </head>
@@ -20,13 +23,13 @@
       <div class="form-email">
         <div class="regístrate">
           <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
         </div>
         <div class="email">
           <label for="inputPassword" class="label-email">Password</label>
-          <input type="password" class="input-email" id="inputPassword">
+          <input type="password" class="inputPassword" id="inputPassword">
         </div>
-        <button class="button-login">login</button>
+        <button class="button-login" id="button-login">login</button>
       </div>
       
       <h3>O bien ingresa con..</h3>

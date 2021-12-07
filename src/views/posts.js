@@ -1,11 +1,14 @@
 export default () => {
   const views = `
   <header>
-  <div class="titleContainer">
-    <h1>"codebook"</h1>
-  </div>
-</header>
-<main>
+    <div class="titleContainer">
+      <h1>"codebook"</h1>
+      <ul>
+        <li><a href="#/">Cerrar Sesión</a</li>
+      </ul>
+    </div>
+    </header>
+  <main>
   <section id="moreInfoContainer">
     <section class="profile">
       <div class="profilePhoto">

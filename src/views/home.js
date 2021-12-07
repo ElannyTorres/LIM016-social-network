@@ -1,7 +1,9 @@
 
-import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+//import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 export default () => {
+
+//export const Home = () => {
   const views = `
   <section class="login">
     <h1 id ="title">!Que viva las recetas!</h1>
@@ -41,7 +43,7 @@ export default () => {
   return divElement;
 };
 
-
+/*
 export const registrar = () => {
   document.getElementById("button-login").addEventListener("click", function () {
     console.log("click")
@@ -93,3 +95,4 @@ export const authGoogle = () => {
   })
 
 }
+*/

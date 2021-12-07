@@ -1,7 +1,7 @@
 /*
 import { Home, authGoogle } from './home.js';
 
-export const components = {
-  home: { Home, authGoogle},
+export const componentes = {
+  home: { Home, authGoogle },
 };
 */

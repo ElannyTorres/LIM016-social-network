@@ -21,29 +21,40 @@
 .chef {
   width: 90%;
 }
+#title{
+  margin: 2.5rem 0 1rem 0;
+  font-size: 2.2rem;
+}
 .form-email {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.4rem;
 }
 .regístrate {
-  margin-top: 1rem;
+  margin: 1rem 0 1rem 0;
 }
 .email {
-  margin-top: 1rem;
+  margin: 1rem 0 1rem 0;
 }
 .button-login {
-  color: var(--alice-blue);
   background: var(--amaranth-red);
   border: none;
-  width: 30%;
+  width: 40%;
   height: 1.5rem;
   border-radius: 10px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#profile{
+  text-decoration: none;
+  color: var(--alice-blue);
 }
 .social-media {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .face {
   width: 30%;

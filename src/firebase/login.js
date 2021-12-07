@@ -1,4 +1,4 @@
-
+/*
 import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 export const registrar = () => {
@@ -52,3 +52,4 @@ export const authGoogle = () => {
   })
 
 }
+*/

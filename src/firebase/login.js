@@ -52,35 +52,3 @@ export const authGoogle = () => {
   })
 
 }
-
-/*
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ..
-      });
-     
-    })
-  */
-  
-        /*const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
-          // ...
-        } else {
-          // User is signed out
-          // ...
-        }
-      });*/
-
-
-

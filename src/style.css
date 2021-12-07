@@ -1,4 +1,3 @@
-
 :root {
   --space-cade: #2b2d42;
   --manatee: #8d99ae;
@@ -10,73 +9,73 @@
   margin: 0;
 }
 
-// Section One
-.login{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+/* // Section One */
+.login {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
-.img-chef{
-    width: 100%;
+.img-chef {
+  width: 100%;
 }
-.chef{
-    width: 90%;
+.chef {
+  width: 90%;
 }
-.form-email{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.form-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.regístrate{
-    margin-top: 1rem;
+.regístrate {
+  margin-top: 1rem;
 }
-.email{
-    margin-top: 1rem;
+.email {
+  margin-top: 1rem;
 }
-.button-login{
-    color: var(--alice-blue);
-    background: var(--amaranth-red);
-    border: none;
-    width: 30%;
-    height: 1.5rem;
-    border-radius: 10px;
-    margin-top: 1rem;
+.button-login {
+  color: var(--alice-blue);
+  background: var(--amaranth-red);
+  border: none;
+  width: 30%;
+  height: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
 }
-.social-media{
-    display: flex;
-    justify-content: space-evenly;
+.social-media {
+  display: flex;
+  justify-content: space-evenly;
 }
-.face{
-    width: 30%;
-    display: flex;
-    text-align: right;
+.face {
+  width: 30%;
+  display: flex;
+  text-align: right;
 }
-.url-face{
-    width: 25%;
+.url-face {
+  width: 25%;
 }
-.gmail{
-    width: 35%;
-    display: flex;
-    text-align: left;
+.gmail {
+  width: 35%;
+  display: flex;
+  text-align: left;
 }
-.url-gmail{
-    width: 25%;
-}
-
-@media only screen and ( min-width: 768px ){
-    .login{
-        flex-direction: row;
-    }   
+.url-gmail {
+  width: 25%;
 }
 
-// Section Two
+@media only screen and (min-width: 768px) {
+  .login {
+    flex-direction: row;
+  }
+}
+
+/* Section Two */
 .titleContainer {
   background-color: var(--space-cade);
   height: 3rem;
   width: 100%;
 }
 h1 {
-  color: var(--alice-blue);
+  color: var(--space-cade);
   text-align: center;
 }
 .profile {

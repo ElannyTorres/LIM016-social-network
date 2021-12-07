@@ -1,4 +1,4 @@
-//import firebase from "firebase/app";
+/* //import firebase from "firebase/app";
 //import "firebase/auth";
 //import { } from 'firebase/auth';
 
@@ -21,14 +21,5 @@ console.log(password)
         var errorMessage = error.message;
         // ..
       });
-     
     })
-  
-  
-};
-
-
-
-
-
-
+}; */

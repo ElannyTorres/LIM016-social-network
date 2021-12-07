@@ -4,7 +4,7 @@ export default () => {
     <div class="titleContainer">
       <h1>"codebook"</h1>
       <ul>
-        <li><a href="#/">Cerrar Sesión</a</li>
+        <li><a href="#/">Cerrar Sesión</a></li>
       </ul>
     </div>
     </header>

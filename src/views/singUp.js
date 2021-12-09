@@ -32,7 +32,7 @@ divElement.innerHTML = `
         <label for="inputPassword" class="label-email">Password</label>
         <input type="password" class="inputPassword" id="inputPassword">
         </div>
-        <button class="button-login" id="button-login"><a href="#/profile" id="profile">login</a></button>
+        <button class="buttonRegistrar" id="buttonRegistrar"><a href="#/profile" id="profile">Registrar</a></button>
     </div>
     <h3>O bien ingresa con..</h3>
     <div class="social-media">
@@ -52,7 +52,7 @@ return divElement;
 };
 
 export const registrar = () => {
-document.getElementById('button-login').addEventListener('click', () => {
+document.getElementById('buttonRegistrar').addEventListener('click', () => {
     console.log('click');
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
@@ -67,8 +67,9 @@ document.getElementById('button-login').addEventListener('click', () => {
     })
     .catch((error) => {
         const errorCode = error.code;
+        console.log(errorCode);
         const errorMessage = error.message;
-        // ..
+        console.log(errorMessage);
     });
 });
 };

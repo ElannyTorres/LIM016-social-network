@@ -39,7 +39,7 @@ export default () => {
       <li>
         <a href="#/posts"><i class="fas fa-home"></i></a>
       </li>
-      <li><a href="#/"><i class="fas fa-sign-in-alt"></i></a></li>
+      <li><a href="#/"><i class="fas fa-sign-out-alt"></i></a></li>
     </ul>
     </div>
 </footer>

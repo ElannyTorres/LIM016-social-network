@@ -62,8 +62,7 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
-
-/* Section One */
+/* Log In */
 .login {
   padding-top: 2rem;
   display: flex;
@@ -79,10 +78,6 @@ a {
   margin-top: 3rem;
   border: solid 3px rgb(216, 178, 1);
   border-radius: 50%;
-}
-.chefTransparente {
-  width: 4rem;
-  height: 4rem;
 }
 .title {
   margin: 2.5rem 0 0 0;
@@ -151,12 +146,35 @@ input {
   }
 }
 
-/* Section Two */
+/* Sign Up */
+.singUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.singUp .title {
+  margin: 0;
+  padding: 2rem;
+}
+.singUp .img-chef {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.singUp .img-chef img {
+  margin-top: 0;
+  width: 55%;
+}
+
+/* Post */
 .titleContainer {
   background-color: rgba(216, 178, 1, 0.8);
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
+  height: 3.5rem;
 }
 .profile {
   padding-top: 0.5rem;
@@ -250,6 +268,9 @@ input {
 .sharePosted {
   width: 3rem;
   height: 2rem;
+}
+.fas {
+  width: 2rem;
 }
 
 /* Profile */

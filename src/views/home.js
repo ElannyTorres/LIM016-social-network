@@ -1,29 +1,22 @@
-
-//import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-
 export default () => {
-
-//export const Home = () => {
   const views = `
   <section class="login">
-    <h1 id ="title">!Que viva las recetas!</h1>
+    <h1 class="title">Bienvenido/a</h1>
     <div class="img-chef">
-      <img src="img/logotipo-del-chef-feliz-símbolo-de-comida-restaurante-cocina-194682894.jpg" alt="" class="chef">
+      <img src="img/logoimg2.png" alt="" class="chef">
     </div>
     <div>
-      <h2>Bienvenido/a</h2>
+    <h3 class="title">!Que vivan las recetas!</h3>
       <div class="form-email">
         <div class="regístrate">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
         </div>
         <div class="email">
-          <label for="inputPassword" class="label-email">Password</label>
-          <input type="password" class="inputPassword" id="inputPassword">
+          <input type="password" class="inputPassword" id="inputPassword" placeholder="Password">
         </div>
-        <button class="button-login" id="button-login"><a href="#/profile" id="profile">login</a></button>
+        <button class="button-login" id="button-login"><a href="#/posts" id="profile">login</a></button>
       </div>
-      <h3>O bien ingresa con..</h3>
+      <h3>O escoge una de las siguientes opciones</h3>
       <div class="social-media">
         <div class="face">
           <a href="https://www.facebook.com/" ><img src="https://cdn.icon-icons.com/icons2/91/PNG/512/facebook_16423.png" alt=""class="url-face"></a>
@@ -32,7 +25,7 @@ export default () => {
           <img src="https://sitelabs.es/wp-content/uploads/2017/12/google-logo-1-800x800.png" alt="" class="url-gmail" id="url-gmail"></a>
         </div>
       </div>
-      <h3>¿No tienes cuenta?<span class="newCount">Regístrate</span></h3>
+      <h3>¿No tienes cuenta?<div class="newCount"><a href=""> Regístrate</a></div></h3>
     </div>
     </section>
     `;

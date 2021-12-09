@@ -25,7 +25,7 @@ export default () => {
           <img src="https://sitelabs.es/wp-content/uploads/2017/12/google-logo-1-800x800.png" alt="" class="url-gmail" id="url-gmail"></a>
         </div>
       </div>
-      <h3>¿No tienes cuenta?<div class="newCount"><a href=""> Regístrate</a></div></h3>
+      <h3>¿No tienes cuenta?<div class="newCount"><a href="#/singUp"> Regístrate</a></div></h3>
     </div>
     </section>
     `;

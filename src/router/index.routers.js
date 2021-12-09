@@ -9,6 +9,11 @@ const router = (route) => {
     case '#/': {
       return content.appendChild(components.home());
     }
+    case '#/singUp': 
+    content.appendChild(components.singUp.singUp());
+    components.singUp.registrar();
+    components.singUp.authGoogle();
+    break;
     case '#/profile': {
       return content.appendChild(components.profile());
     }

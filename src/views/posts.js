@@ -1,13 +1,5 @@
 export default () => {
   const views = `
-  <header>
-    <div class="titleContainer">
-      <h1>"codebook"</h1>
-      <ul>
-        <li><a href="#/">Cerrar Sesión</a></li>
-      </ul>
-    </div>
-    </header>
   <main>
   <section id="moreInfoContainer">
     <section class="profile">
@@ -21,9 +13,9 @@ export default () => {
     </section>
     <section class="postContainer">
       <div class="createPostContainer">
-        <input type="text" class="textToCreate" placeholder="¿Qué deseas compartir?">
+        <textarea class="textToCreate" placeholder="¿Qué deseas compartir?"></textarea>
         <div class="btnToCreate">
-          <button class="btnPicture"></button>
+          <button class="btnPicture"><i class="fas fa-image"></i></button>
           <button class="btnShare">Compartir</button>
         </div>
       </div>
@@ -40,7 +32,17 @@ export default () => {
     </section>
   </section>
 </main>
-<footer></footer>
+<footer>
+    <div class="titleContainer">
+    <ul>
+      <li><a href="#/profile"><i class="fas fa-user"></i></a></li>
+      <li>
+        <a href="#/posts"><i class="fas fa-home"></i></a>
+      </li>
+      <li><a href="#/"><i class="fas fa-sign-in-alt"></i></a></li>
+    </ul>
+    </div>
+</footer>
       `;
 
   const divElement = document.createElement('div');

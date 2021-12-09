@@ -4,46 +4,126 @@
   --alice-blue: #edf2f4;
   --imperial-red: #ef233c;
   --amaranth-red: #d90429;
+  --mushroom: #fef2e4;
+  --onion: #fd974f;
+  --red-pepper: #c60000;
+  --driftwood: #805a3b;
+  --HoneyYellow: #ffb703;
+  --AcidGreen: #a5be00;
 }
 * {
   margin: 0;
 }
+body {
+  background-image: url(./img/fondo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+#root {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  justify-content: center;
+}
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-/* // Section One */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+footer ul > li {
+  display: inline-block;
+}
+footer ul li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: all 0.4s linear;
+  border-radius: 10px;
+}
+footer ul li a:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+button {
+  background: rgba(216, 178, 1, 1);
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Section One */
 .login {
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
+  color: var(--mushroom);
 }
 .img-chef {
   width: 100%;
 }
 .chef {
-  width: 90%;
+  width: 50%;
+  margin-top: 3rem;
+  border: solid 3px rgb(216, 178, 1);
+  border-radius: 50%;
+}
+.chefTransparente {
+  width: 4rem;
+  height: 4rem;
+}
+.title {
+  margin: 2.5rem 0 0 0;
+  font-size: 1.5rem;
+  color: #fef2e4;
+}
+input {
+  border-radius: 2rem;
+  text-align: center;
+  padding: 0.2rem;
 }
 .form-email {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1.6rem;
 }
 .regístrate {
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
 }
 .email {
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
 }
 .button-login {
-  color: var(--alice-blue);
-  background: var(--amaranth-red);
+  background: rgba(216, 178, 1, 1);
   border: none;
-  width: 30%;
+  width: 40%;
   height: 1.5rem;
   border-radius: 10px;
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#profile {
+  text-decoration: none;
+  color: var(--alice-blue);
 }
 .social-media {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .face {
   width: 30%;
@@ -61,6 +141,9 @@
 .url-gmail {
   width: 25%;
 }
+.newCount {
+  color: rgba(216, 178, 1, 1);
+}
 
 @media only screen and (min-width: 768px) {
   .login {
@@ -70,19 +153,18 @@
 
 /* Section Two */
 .titleContainer {
-  background-color: var(--space-cade);
-  height: 3rem;
+  background-color: rgba(216, 178, 1, 0.8);
   width: 100%;
-}
-h1 {
-  color: var(--space-cade);
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
 }
 .profile {
+  padding-top: 0.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  color: #edf2f4;
 }
 .profilePhoto > img {
   width: 7rem;
@@ -96,7 +178,7 @@ h1 {
   align-items: center;
 }
 .createPostContainer {
-  background-color: var(--manatee);
+  background-color: rgb(73, 160, 120);
   width: 20rem;
   height: 10rem;
   border-radius: 1rem;
@@ -106,7 +188,7 @@ h1 {
   flex-direction: column;
 }
 .textToCreate {
-  background-color: var(--alice-blue);
+  background-color: rgba(255, 255, 255, 0.8);
   width: 87%;
   height: 54%;
   border-radius: 0.7rem;
@@ -114,11 +196,11 @@ h1 {
 .btnToCreate {
   display: flex;
   margin-top: 0.7rem;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 .btnPicture,
 .btnShare {
-  background-color: var(--amaranth-red);
   color: var(--alice-blue);
   display: flex;
   align-items: center;
@@ -133,32 +215,79 @@ h1 {
   width: 5rem;
 }
 .posted {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
+.postedOne {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: black;
+  border-radius: 1rem;
+  text-align: -webkit-center;
+  box-sizing: border;
+}
 .postedOneTitle {
-  background-color: var(--amaranth-red);
   height: 3rem;
   width: 18.7rem;
-  text-align: left;
-  padding: 14px 5px 0 17px;
+  box-sizing: border-box;
+  padding-top: 14px;
 }
 .postedText {
-  background-color: var(--imperial-red);
+  padding-top: -1rem;
+  /* background-color: var(--imperial-red); */
   height: 3rem;
   width: 20rem;
 }
 .postedBtns {
-  background-color: var(--manatee);
-  height: 3rem;
-  width: 20rem;
+  height: 1rem;
+  width: 10rem;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 .likePosted,
 .sharePosted {
-  width: 5rem;
-  height: 3rem;
+  width: 3rem;
+  height: 2rem;
+}
+
+/* Profile */
+.containerProfile {
+  display: flex;
+  flex-direction: column;
+}
+.coverPhoto {
+  width: 20rem;
+  height: 8.5rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+.infoProfile {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 7rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+#profileSection {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profileInfo {
+  color: white;
+}
+
+/* 404 */
+#message {
+  background: white;
+  width: 284px;
+  margin: 81% 5% 15px;
+  padding: 32px 24px 16px;
+  border-radius: 24px;
 }

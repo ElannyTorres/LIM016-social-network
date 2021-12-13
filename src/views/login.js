@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved *//*
+/* eslint-disable import/no-unresolved */
 import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 import { app } from '../firebase/app.js';
@@ -9,6 +9,7 @@ export const login = () => {
   })
 }
 const auth = getAuth(app);
+/*
 signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in

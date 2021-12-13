@@ -16,6 +16,10 @@ const router = (route) => {
       components.singUp.registrar();
       components.singUp.authGoogle();
       break;
+    case '#/login':
+      content.appendChild(components.login.login());
+      components.login.login();
+      break;
     case '#/profile': {
       return content.appendChild(components.profile());
     }

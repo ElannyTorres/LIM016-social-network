@@ -22,16 +22,16 @@ export const singUp = () => {
     <h3 class="title">!Que vivan las recetas!</h3>
     <div class="form-email">
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputName" placeholder="Nombres">
+        <input type="text" class="form-control" id="inputName" placeholder="Nombres" required>
         </div>
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputLastName" placeholder="Apellidos">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
         </div>
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" required>
         </div>
         <div class="email">
-        <input type="password" class="inputPassword" id="inputPassword">
+        <input type="password" class="inputPassword" id="inputPassword" placeholder="Password" required>
         </div>
         <button class="buttonRegistrar" id="buttonRegistrar"><a href="#/profile" id="profile">Registrar</a></button>
     </div>
@@ -45,14 +45,15 @@ export const singUp = () => {
         </div>
     </div>
     </div>
-    </section>
+    <div class="return"><a href="#/"><i class="fas fa-chevron-left"></i></a></div>
+</section>
     `;
 
   return divElement;
 };
 
 export const registrar = () => {
-document.getElementById('buttonRegistrar').addEventListener('click', () => {
+  document.getElementById('buttonRegistrar').addEventListener('click', () => {
     console.log('click');
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
@@ -70,8 +71,8 @@ document.getElementById('buttonRegistrar').addEventListener('click', () => {
         console.log(errorCode);
         const errorMessage = error.message;
         console.log(errorMessage);
-    });
-});
+      });
+  });
 };
 
 export const authGoogle = () => {

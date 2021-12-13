@@ -1,4 +1,9 @@
-export default () => {
+/* eslint-disable import/no-unresolved */
+import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+
+import { app } from '../firebase/app.js';
+
+export const Home = () => {
   const views = `
   <section class="login">
     <h1 class="title">Bienvenido/a</h1>
@@ -14,7 +19,7 @@ export default () => {
         <div class="email">
           <input type="password" class="inputPassword" id="inputPassword" placeholder="Password">
         </div>
-        <button class="button-login" id="button-login"><a href="#/posts" id="profile">login</a></button>
+        <button class="button-login" id="button-login"><a id="profile">login</a></button>
       </div>
       <h3>O escoge una de las siguientes opciones</h3>
       <div class="social-media">
@@ -35,3 +40,34 @@ export default () => {
 
   return divElement;
 };
+
+export const login = () => {
+  document.querySelector('.button-login').addEventListener('click', () => {
+    console.log('click')
+
+    const email = document.getElementById('inputEmail').value;
+    const password = document.getElementById('inputPassword').value;
+    console.log(email);
+    console.log(password);
+
+    const auth = getAuth(app);
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      if (typeof user === 'object') {
+        window.location.hash = '#/posts';
+      }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage)
+
+      if (error.message === 'Firebase: Error (auth/user-not-found).') {
+        
+      } else {
+        
+      }
+    });
+  })
+}

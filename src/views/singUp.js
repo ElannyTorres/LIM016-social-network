@@ -22,16 +22,16 @@ export const singUp = () => {
     <h3 class="title">!Que vivan las recetas!</h3>
     <div class="form-email">
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputName" placeholder="Nombres">
+        <input type="text" class="form-control" id="inputName" placeholder="Nombres" required>
         </div>
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputLastName" placeholder="Apellidos">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Apellidos">
         </div>
         <div class="regístrate">
-        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com" required>
         </div>
         <div class="email">
-        <input type="password" class="inputPassword" id="inputPassword">
+        <input type="password" class="inputPassword" id="inputPassword" placeholder="Password" required>
         </div>
         <div class="requisito">
         <h3 class="">Usa 6 o más caracteres combina letras, números y símbolos</h3>
@@ -59,7 +59,8 @@ export const singUp = () => {
         </div>
     </div>
     </div>
-    </section>
+    <div class="return"><a href="#/"><i class="fas fa-chevron-left"></i></a></div>
+</section>
     `;
 
   return divElement;
@@ -74,57 +75,55 @@ export const registrar = () => {
     console.log(password);
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        if (typeof user === 'object') {
-          const registro = document.querySelector('.buttonRegistrar');
-          registro.style.display = 'none';
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user);
+      if (typeof user === 'object') {
+        const registro = document.querySelector('.buttonRegistrar');
+        registro.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
-          errorInvalidEmail.style.display = 'none';
+        const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
+        errorInvalidEmail.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
-          errorEmailInUse.style.display = 'none';
+        const errorEmailInUse = document.querySelector('.requisito-emailInUse');
+        errorEmailInUse.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
-          errorPasswordVulnerable.style.display = 'none';
+        const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
+        errorPasswordVulnerable.style.display = 'none';
 
-          const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
-          const login = document.createElement('button');
-          login.innerHTML = `<button class="button-login" id="button-login">
-          <a href="#/" id="profile">login</a></button>`;
-          loginDesdeRegistrar.appendChild(login);
-        }
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-        const errorMessage = error.message;
-        console.log(errorMessage);
+        const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
+        const login = document.createElement('button');
+        login.innerHTML = `<button class="button-login" id="button-login">
+        <a href="#/" id="profile">login</a></button>`;
+        loginDesdeRegistrar.appendChild(login);
+      }
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      console.log(errorCode);
+      const errorMessage = error.message;
+      console.log(errorMessage);
 
-        if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          const requisito = document.querySelector('.requisito');
-          requisito.style.display = 'none';
+      if (error.message === 'Firebase: Error (auth/invalid-email).') {
+        const requisito = document.querySelector('.requisito');
+        requisito.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
-          errorInvalidEmail.style.display = 'block';
-        } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-          const requisito = document.querySelector('.requisito');
-          requisito.style.display = 'none';
+        const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
+        errorInvalidEmail.style.display = 'block';
+      } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+        const requisito = document.querySelector('.requisito');
+        requisito.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
-          errorEmailInUse.style.display = 'block';
-        } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
-          const requisito = document.querySelector('.requisito');
-          requisito.style.display = 'none';
+        const errorEmailInUse = document.querySelector('.requisito-emailInUse');
+        errorEmailInUse.style.display = 'block';
+      } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+        const requisito = document.querySelector('.requisito');
+        requisito.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
-          errorPasswordVulnerable.style.display = 'block';
-        }
-      });
+        const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
+        errorPasswordVulnerable.style.display = 'block';
+      }
+    });
   });
 };
 

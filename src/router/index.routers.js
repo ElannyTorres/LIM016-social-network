@@ -11,6 +11,7 @@ const router = (route) => {
     case '': case '#/':
       content.appendChild(components.home.Home());
       components.home.login();
+      components.home.loginAuthGoogle();
       break;
     /*case '#/': {
       return content.appendChild(components.home.Home());

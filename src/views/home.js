@@ -1,5 +1,9 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
+import {
+  getAuth, signInWithEmailAndPassword, GoogleAuthProvider,
+  signInWithPopup,
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 import { app } from '../firebase/app.js';
 
@@ -20,6 +24,8 @@ export const Home = () => {
           <input type="password" class="inputPassword" id="inputPassword" placeholder="Password">
         </div>
         <button class="button-login" id="button-login"><a id="profile">login</a></button>
+        <div class="modalErrorSinUp">
+        </div>
       </div>
       <h3>O escoge una de las siguientes opciones</h3>
       <div class="social-media">
@@ -43,8 +49,6 @@ export const Home = () => {
 
 export const login = () => {
   document.querySelector('.button-login').addEventListener('click', () => {
-    console.log('click')
-
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
     console.log(email);
@@ -52,22 +56,64 @@ export const login = () => {
 
     const auth = getAuth(app);
     signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      if (typeof user === 'object') {
-        window.location.hash = '#/posts';
-      }
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (typeof user === 'object') {
+          window.location.hash = '#/posts';
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
 
-      if (error.message === 'Firebase: Error (auth/user-not-found).') {
-        
-      } else {
-        
-      }
-    });
-  })
-}
+        if (error.message === 'Firebase: Error (auth/user-not-found).') {
+          let userNotFound = document.querySelector('."modalErrorSinUp');
+          userNotFound.innerHTML = `
+          <p>Datos incorrectos</p>
+          `;
+        } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
+          let invalidEmail = document.querySelector('.modalErrorSinUp');
+          invalidEmail.innerHTML = `
+          <p>Ingresaste un correo inválido.</p>
+          `;
+          invalidEmail.appendChild();
+
+        } // else if () {}
+      });
+  });
+};
+
+// con Gmail
+export const loginAuthGoogle = () => {
+  document.getElementById('url-gmail').addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+
+    const auth = getAuth(app);
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log('google sing in');
+        if (typeof user === 'object') {
+          window.location.hash = '#/posts';
+        }
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        // The email of the user's account used.
+        const email = error.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+        console.log('err');
+      });
+  });
+};

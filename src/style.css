@@ -361,3 +361,13 @@ input {
   margin-bottom: 1rem;
   display: none;
 }
+.modalErrorSinUp{
+  display: block;
+  /*top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.226);
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: none;*/
+}

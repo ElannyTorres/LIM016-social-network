@@ -23,8 +23,9 @@ export const Home = () => {
         <div class="email">
           <input type="password" class="inputPassword" id="inputPassword" placeholder="Password">
         </div>
+        <div class="modal">
         <button class="button-login" id="button-login"><a id="profile">login</a></button>
-        <div class="modalErrorSinUp">
+       
         </div>
       </div>
       <h3>O escoge una de las siguientes opciones</h3>
@@ -68,17 +69,28 @@ export const login = () => {
         console.log(errorMessage);
 
         if (error.message === 'Firebase: Error (auth/user-not-found).') {
-          let userNotFound = document.querySelector('."modalErrorSinUp');
+          let userNotFound = document.querySelector('.modalErrorLogin');
           userNotFound.innerHTML = `
           <p>Datos incorrectos</p>
           `;
         } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          let invalidEmail = document.querySelector('.modalErrorSinUp');
+          let modal = document.querySelector('.modal');
+          let invalidEmail = document.createElement('div.');
+
           invalidEmail.innerHTML = `
+          <span class="close" id="close">&times;</span>
           <p>Ingresaste un correo inválido.</p>
           `;
-          invalidEmail.appendChild();
+          invalidEmail.style.display = 'block';
+          modal.appendChild(invalidEmail);
 
+          document.querySelector('.close').addEventListener('click', () => {
+            console.log('click');
+            invalidEmail.style.display = 'none';
+          });
+          /*setTimeout(function () {
+            invalidEmail.closest();
+          }, 3000);*/
         } // else if () {}
       });
   });

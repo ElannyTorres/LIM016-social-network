@@ -2,8 +2,8 @@ import {
   getFirestore,
   collection,
   getDocs,
-  doc,
-  setDoc,
+  /* doc,
+  setDoc, */
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
@@ -22,3 +22,6 @@ getDocs(docRef).then((snapshot) => {
   // eslint-disable-next-line no-console
   console.log(usuarios);
 });
+
+const dbOne = firebase.firestore();
+export { dbOne };

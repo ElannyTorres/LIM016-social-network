@@ -25,7 +25,6 @@ export const Home = () => {
         </div>
         <div class="modal">
         <button class="button-login" id="button-login"><a id="profile">login</a></button>
-       
         </div>
       </div>
       <h3>O escoge una de las siguientes opciones</h3>
@@ -76,12 +75,12 @@ export const login = () => {
         } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
           let modal = document.querySelector('.modal');
           let invalidEmail = document.createElement('div.');
+          invalidEmail.classList.add('modalErrorLogin');
 
           invalidEmail.innerHTML = `
           <span class="close" id="close">&times;</span>
           <p>Ingresaste un correo inválido.</p>
           `;
-          invalidEmail.style.display = 'block';
           modal.appendChild(invalidEmail);
 
           document.querySelector('.close').addEventListener('click', () => {
@@ -129,3 +128,6 @@ export const loginAuthGoogle = () => {
       });
   });
 };
+
+let credential = ['adriana_14@hotmail.com', 'Adriana123456']
+console.log(credential)

@@ -25,6 +25,8 @@ export const Home = () => {
         </div>
         <div class="modal">
         <button class="button-login" id="button-login"><a id="profile">login</a></button>
+        <div class="modalErrorLogin">
+        </div>
         </div>
       </div>
       <h3>O escoge una de las siguientes opciones</h3>
@@ -74,7 +76,9 @@ export const login = () => {
           `;
         } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
           let modal = document.querySelector('.modal');
-          let invalidEmail = document.createElement('div.');
+          /*modal.style.display = 'block';
+          let invalidEmail = document.querySelector('.modalErrorLogin');*/
+          let invalidEmail = document.createElement('div');
           invalidEmail.classList.add('modalErrorLogin');
 
           invalidEmail.innerHTML = `

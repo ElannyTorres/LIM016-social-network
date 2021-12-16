@@ -5,17 +5,11 @@ const content = document.querySelector('#root');
 const router = (route) => {
   content.innerHTML = '';
   switch (route) {
-   /* case '': {
-      return content.appendChild(components.home());
-    }*/
     case '': case '#/':
       content.appendChild(components.home.Home());
       components.home.login();
       components.home.loginAuthGoogle();
       break;
-    /*case '#/': {
-      return content.appendChild(components.home.Home());
-    }*/
     case '#/singUp':
       content.appendChild(components.singUp.singUp());
       components.singUp.registrar();

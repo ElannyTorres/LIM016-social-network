@@ -16,14 +16,6 @@ export default () => {
         <button type="submit" id="btnShare" class="btnShare">Compartir</button>
       </form>
       <div class="posted">
-        <div class="postedOne">
-          <div class="postedOneTitle">Publicado por Jean Cedron</div>
-          <div class="postedText">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
-          <div class="postedBtns">
-            <button class="likePosted"></button>
-            <button class="sharePosted"></button>
-          </div>
-        </div>
       </div>
     </section>
   </section>

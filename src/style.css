@@ -19,6 +19,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 #root {
   background: rgba(0, 0, 0, 0.5);
@@ -279,11 +281,12 @@ input {
   width: 20rem;
 }
 .postedBtns {
-  height: 1rem;
-  width: 10rem;
+  height: 3rem;
 }
 .likePosted,
-.sharePosted {
+.sharePosted,
+.editPosted,
+.deletePosted {
   width: 3rem;
   height: 2rem;
 }

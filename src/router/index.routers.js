@@ -23,6 +23,7 @@ const router = (route) => {
       content.appendChild(components.posts.Posts());
       components.posts.loadPosts();
       components.posts.savePost();
+      components.posts.editBtn();
       components.posts.deleteBtn();
       break;
     default:

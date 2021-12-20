@@ -5,6 +5,7 @@ import {
   getDocs,
   doc,
   deleteDoc,
+  updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
 
@@ -16,9 +17,9 @@ export const deleteBtn = async () => {
 
   btnsDelete.forEach((btn) => {
     btn.addEventListener('click', async () => {
-      console.log('deleting', btn.id);
+      /* console.log('deleting', btn.id); */
       const deleted = await deleteDoc(doc(db, 'posts', btn.id));
-
+      console.log(deleted);
       postContainer.innerHTML = '';
 
       loadPosts();
@@ -75,5 +76,19 @@ export const savePost = async () => {
       loadPosts();
       deleteBtn();
     }
+  });
+};
+
+export const editBtn = async () => {
+  const btnsEdit = document.querySelectorAll('.editPosted');
+  /* const postContainer = document.querySelector('.posted'); */
+  console.log(btnsEdit);
+
+  btnsEdit.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      console.log('editing');
+      const deleted = await deleteDoc(doc(db, 'posts', btn.id));
+    });
+    console.log(btnsEdit);
   });
 };

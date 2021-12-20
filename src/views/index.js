@@ -1,6 +1,11 @@
 import { Home, login, loginAuthGoogle } from './home.js';
 import { singUp, registrar, authGoogle } from './singUp.js';
-import { savePost, deleteBtn, loadPosts } from '../firebase/timeline.js';
+import {
+  savePost,
+  deleteBtn,
+  loadPosts,
+  editBtn,
+} from '../firebase/timeline.js';
 import Posts from './posts.js';
 import Profile from './profile.js';
 import Default from './default.js';
@@ -16,6 +21,7 @@ const components = {
     Posts,
     loadPosts,
     savePost,
+    editBtn,
     deleteBtn,
   },
   default: Default,

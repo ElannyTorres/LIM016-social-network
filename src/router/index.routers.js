@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import { components } from '../views/index.js';
 
 const content = document.querySelector('#root');

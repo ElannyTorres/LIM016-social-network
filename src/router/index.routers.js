@@ -5,7 +5,8 @@ const content = document.querySelector('#root');
 const router = (route) => {
   content.innerHTML = '';
   switch (route) {
-    case '': case '#/':
+    case '':
+    case '#/':
       content.appendChild(components.home.Home());
       components.home.login();
       components.home.loginAuthGoogle();
@@ -18,9 +19,12 @@ const router = (route) => {
     case '#/profile': {
       return content.appendChild(components.profile());
     }
-    case '#/posts': {
-      return content.appendChild(components.posts());
-    }
+    case '#/posts':
+      content.appendChild(components.posts.Posts());
+      components.posts.loadPosts();
+      components.posts.savePost();
+      components.posts.deleteBtn();
+      break;
     default:
       return content.appendChild(components.default());
   }

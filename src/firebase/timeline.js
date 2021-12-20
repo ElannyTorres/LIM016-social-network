@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
   getFirestore,
   collection,
@@ -10,7 +11,7 @@ const db = getFirestore(app);
 
 window.onload = function () {
   const postCreater = document.querySelector(
-    '#root div section.postContainer form#postForm'
+    '#root div section.postContainer form#postForm';
   );
   console.log(postCreater);
   const postContainer = document.querySelector('.posted');
@@ -23,6 +24,7 @@ window.onload = function () {
     const newPost = await addDoc(collection(db, 'posts'), {
       description: `${postText.value}`,
     });
+    console.log(newPost)
     console.log('Document written with ID: ', newPost.id);
     console.log(postText.value);
 
@@ -31,6 +33,7 @@ window.onload = function () {
 
     const querySnapshot = await getDocs(collection(db, 'posts'));
     querySnapshot.forEach((doc) => {
+      console.log(data)
       console.log(`${doc.id} => ${doc.data()}`);
       postContainer.innerHTML += `
       <div class="postedOne">

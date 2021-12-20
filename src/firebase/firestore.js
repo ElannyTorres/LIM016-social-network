@@ -1,4 +1,4 @@
-// Initialize Cloud Firestore through Firebase
+/* // Initialize Cloud Firestore through Firebase
 import {
   getFirestore,
   collection,
@@ -33,11 +33,11 @@ console.log('Document written with ID: ', docRef.id);
   console.error('Error adding document: ', e);
 } */
 
-const querySnapshot = await getDocs(collection(db, 'users'));
+/* const querySnapshot = await getDocs(collection(db, 'users'));
 querySnapshot.forEach((doc) => {
   console.log(`${doc.id} => ${doc.data()}`);
 });
-
+ */
 // Allow read/write access on all documents to any user signed in to the application
 /* service cloud.firestore {
   match /databases/{database}/documents {
@@ -45,6 +45,6 @@ querySnapshot.forEach((doc) => {
       allow read, write: if request.auth != null;
     }
   }
-}*/
+}
 
-export { docRef };
+export { docRef }; */

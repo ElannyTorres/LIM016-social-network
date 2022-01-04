@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import {
@@ -70,31 +71,38 @@ export const login = () => {
         console.log(errorMessage);
 
         if (error.message === 'Firebase: Error (auth/user-not-found).') {
-          let userNotFound = document.querySelector('.modalErrorLogin');
+          const userNotFound = document.querySelector('.modalErrorLogin');
+          userNotFound.style.display = 'block';
           userNotFound.innerHTML = `
-          <p>Datos incorrectos</p>
-          `;
-        } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          let modal = document.querySelector('.modal');
-          /*modal.style.display = 'block';
-          let invalidEmail = document.querySelector('.modalErrorLogin');*/
-          let invalidEmail = document.createElement('div');
-          invalidEmail.classList.add('modalErrorLogin');
-
-          invalidEmail.innerHTML = `
           <span class="close" id="close">&times;</span>
-          <p>Ingresaste un correo inválido.</p>
+          <p>Datos inválidos regístrate y disfruta.</p>
           `;
-          modal.appendChild(invalidEmail);
-
           document.querySelector('.close').addEventListener('click', () => {
-            console.log('click');
-            invalidEmail.style.display = 'none';
+            userNotFound.style.display = 'none';
           });
-          /*setTimeout(function () {
-            invalidEmail.closest();
-          }, 3000);*/
-        } // else if () {}
+        } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
+          // setTimeout(function () {
+          const modalError = document.querySelector('.modalErrorLogin');
+          modalError.style.display = 'block';
+          modalError.innerHTML = `
+            <span class="close" id="close">&times;</span>
+            <p>Ingresaste un correo inválido.</p>
+            `;
+          document.querySelector('.close').addEventListener('click', () => {
+            modalError.style.display = 'none';
+          });
+          // }, 3000);
+        } else if (error.message === 'Firebase: Error (auth/wrong-password).') {
+          const wrongPassword = document.querySelector('.modalErrorLogin');
+          wrongPassword.style.display = 'block';
+          wrongPassword.innerHTML = `
+            <span class="close" id="close">&times;</span>
+            <p>Contraseña errada</p>
+            `;
+          document.querySelector('.close').addEventListener('click', () => {
+            wrongPassword.style.display = 'none';
+          });
+        }
       });
   });
 };
@@ -133,5 +141,5 @@ export const loginAuthGoogle = () => {
   });
 };
 
-let credential = ['adriana_14@hotmail.com', 'Adriana123456']
-console.log(credential)
+const credential = ['adriana_14@hotmail.com', 'Adriana123456'];
+console.log(credential);

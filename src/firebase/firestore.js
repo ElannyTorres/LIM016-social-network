@@ -1,9 +1,12 @@
-/* // Initialize Cloud Firestore through Firebase
+ // Initialize Cloud Firestore through Firebase
 import {
   getFirestore,
-  collection,
-  addDoc,
-  getDocs,
+  //collection,
+  //addDoc,
+  doc,
+  setDoc,
+  //getDoc,
+  //getDocs
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
 const db = getFirestore(app);
@@ -45,3 +48,12 @@ querySnapshot.forEach((doc) => {
   }
 }
 export { docRef }; */
+export const dataUser = async (id, Username, Correo, Name) => {
+  // Add a new document in collection "cities"
+  const users = doc(db, 'usuarios', id);
+  await setDoc(users, {
+    name: Username,
+    lastNames: Name,
+    correo: Correo,
+  });
+};

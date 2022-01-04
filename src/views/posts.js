@@ -1,6 +1,5 @@
 export default () => {
   const views = `
-  <section id="moreInfoContainer">
     <section class="profile">
       <div class="profilePhoto">
         <img src="./img/foto.png" alt="Profile Photo">
@@ -12,13 +11,17 @@ export default () => {
     </section>
     <section class="postContainer">
       <form id="postForm" name="postForm" class="createPostContainer">
-        <textarea rows="3" id="textDescription" class="textToCreate" placeholder="¿Qué deseas compartir?" autofocus></textarea><br>
-        <button type="submit" id="btnShare" class="btnShare">Compartir</button>
+        <textarea rows="3" id="textDescription" class="textToCreate" placeholder="¿Qué deseas compartir?" autofocus></textarea>
+        <div class="btnsToCreate">
+          <ul>
+            <li><button class="btnPicture"><i class="fas fa-image"></i></button></li>
+            <li><button type="submit" id="btnShare" class="btnShare">Compartir</button></li>
+          </ul>
+        </div>
       </form>
       <div class="posted">
       </div>
     </section>
-  </section>
 <footer>
     <div class="titleContainer">
     <ul>
@@ -37,8 +40,3 @@ export default () => {
 
   return divElement;
 };
-
-/* <button class="btnPicture">
-  <i class="fas fa-image"></i>
-</button>;
-*/

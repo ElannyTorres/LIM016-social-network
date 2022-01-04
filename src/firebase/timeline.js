@@ -3,6 +3,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   doc,
   deleteDoc,
   updateDoc,
@@ -11,35 +12,24 @@ import { app } from './app.js';
 
 const db = getFirestore(app);
 
-export const deleteBtn = async () => {
-  const btnsDelete = document.querySelectorAll('.deletePosted');
-  const postContainer = document.querySelector('.posted');
-
-  btnsDelete.forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      /* console.log('deleting', btn.id); */
-      const deleted = await deleteDoc(doc(db, 'posts', btn.id));
-      console.log(deleted);
-      postContainer.innerHTML = '';
-
-      loadPosts();
-      deleteBtn();
-    });
-  });
-};
-
 export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
   const querySnapshot = await getDocs(collection(db, 'posts'));
+  postContainer.innerHTML = '';
   querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
+    // console.log(doc);
+    // console.log(`${doc.id} => ${doc.data()}`);
     postContainer.innerHTML += `
-      <div class="postedOne">
+      <div class="postedOne" id="post${doc.id}">
         <div class="postedOneTitle">Publicado por ${doc.id}</div>
         <div class="postedText">${doc.data().description}</div>
         <div class="postedBtns">
-          <button class="likePosted"><i class="fas fa-heart"></i></button>
-          <button class="editPosted"><i class="fas fa-pencil-alt"></i></button>
+          <button class="likePosted" id="${doc.id}">
+            <i class="fas fa-heart"></i>
+          </button>
+          <button class="editPosted" id="${doc.id}">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
           <button class="deletePosted" id="${doc.id}">
           <i class="far fa-trash-alt"></i>
           </button>
@@ -47,7 +37,22 @@ export const loadPosts = async () => {
       </div>
     `;
   });
+  editBtn();
   deleteBtn();
+};
+
+export const deleteBtn = async () => {
+  const btnsDelete = document.querySelectorAll('.deletePosted');
+
+  btnsDelete.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      /* console.log('deleting', btn.id); */
+      const deleted = await deleteDoc(doc(db, 'posts', btn.id));
+      const postToEliminate = document.getElementById('post' + btn.id);
+      console.log(postToEliminate);
+      postToEliminate.innerHTML = '';
+    });
+  });
 };
 
 export const savePost = async () => {
@@ -71,24 +76,65 @@ export const savePost = async () => {
       postCreater.reset();
       postText.focus();
 
-      postContainer.innerHTML = '';
-
       loadPosts();
-      deleteBtn();
     }
   });
 };
 
 export const editBtn = async () => {
+  const postContainer = document.querySelector('.posted');
   const btnsEdit = document.querySelectorAll('.editPosted');
-  /* const postContainer = document.querySelector('.posted'); */
-  console.log(btnsEdit);
 
   btnsEdit.forEach((btn) => {
     btn.addEventListener('click', async () => {
-      console.log('editing');
-      const deleted = await deleteDoc(doc(db, 'posts', btn.id));
+      const postToEdit = document.querySelector(btn.id);
+      console.log(postToEdit);
+      const modalEdit = `
+      <div class="postedOne postEdit">
+        <div class="postedOneTitle postEditTitle">Publicado por ${btn.id} </div>
+        <div class="postedText textToEdit">
+          <textarea type="text" id="${btn.id}" class="newText"></textarea>
+        </div>
+        <div class="postedBtns">
+          <button class="updateChange">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <button class="cancelChange">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      `;
+      postContainer.innerHTML += modalEdit;
+      const textToEdit = document.querySelector('.newText');
+      // console.log(textToEdit);
+      // console.log('editing', btn.id);
+      const editingText = await getDoc(doc(db, 'posts', btn.id));
+      const textForEdit = editingText.data().description;
+      // console.log(textForEdit);
+      textToEdit.value = textForEdit;
+      updatePost();
+      cancelUpdate();
     });
-    console.log(btnsEdit);
+  });
+};
+
+export const updatePost = async () => {
+  const updateBtn = document.querySelector('.updateChange');
+  // console.log(updateBtn);
+  updateBtn.addEventListener('click', async (btn) => {
+    console.log('updating', btn.id);
+    /* const textUpdating = document.querySelector('.newText');
+    const textToUpdate = doc(db, 'posts', btn.id);
+    const updateText = await updateDoc(doc, {
+      description: textUpdating.value,
+    }); */
+  });
+};
+
+export const cancelUpdate = async () => {
+  const cancelBtn = document.getElementsByClassName('cancelChange');
+  cancelBtn.addEventListener('click', async (btn) => {
+    console.log('canceling', btn);
   });
 };

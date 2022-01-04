@@ -74,55 +74,74 @@ export const registrar = () => {
     console.log(password);
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      if (typeof user === 'object') {
-        const registro = document.querySelector('.buttonRegistrar');
-        registro.style.display = 'none';
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        if (typeof user === 'object') {
+          const registro = document.querySelector('.buttonRegistrar');
+          registro.style.display = 'none';
 
-        const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
-        errorInvalidEmail.style.display = 'none';
+          const errorInvalidEmail = document.querySelector(
+            '.requisito-invalidEmail'
+          );
+          errorInvalidEmail.style.display = 'none';
 
-        const errorEmailInUse = document.querySelector('.requisito-emailInUse');
-        errorEmailInUse.style.display = 'none';
+          const errorEmailInUse = document.querySelector(
+            '.requisito-emailInUse'
+          );
+          errorEmailInUse.style.display = 'none';
 
-        const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
-        errorPasswordVulnerable.style.display = 'none';
+          const errorPasswordVulnerable = document.querySelector(
+            '.requisito-passwordVulnerable'
+          );
+          errorPasswordVulnerable.style.display = 'none';
 
-        const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
-        const login = document.createElement('button');
-        login.innerHTML = `<button class="button-login" id="button-login">
+          const loginDesdeRegistrar = document.querySelector(
+            '.loginDesdeRegistrar'
+          );
+          const login = document.createElement('button');
+          login.innerHTML = `<button class="button-login" id="button-login">
         <a href="#/" id="profile">login</a></button>`;
-        loginDesdeRegistrar.appendChild(login);
-      }
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(errorCode);
-      const errorMessage = error.message;
-      console.log(errorMessage);
+          loginDesdeRegistrar.appendChild(login);
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+        const errorMessage = error.message;
+        console.log(errorMessage);
 
-      if (error.message === 'Firebase: Error (auth/invalid-email).') {
-        const requisito = document.querySelector('.requisito');
-        requisito.style.display = 'none';
+        if (error.message === 'Firebase: Error (auth/invalid-email).') {
+          const requisito = document.querySelector('.requisito');
+          requisito.style.display = 'none';
 
-        const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
-        errorInvalidEmail.style.display = 'block';
-      } else if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-        const requisito = document.querySelector('.requisito');
-        requisito.style.display = 'none';
+          const errorInvalidEmail = document.querySelector(
+            '.requisito-invalidEmail'
+          );
+          errorInvalidEmail.style.display = 'block';
+        } else if (
+          error.message === 'Firebase: Error (auth/email-already-in-use).'
+        ) {
+          const requisito = document.querySelector('.requisito');
+          requisito.style.display = 'none';
 
-        const errorEmailInUse = document.querySelector('.requisito-emailInUse');
-        errorEmailInUse.style.display = 'block';
-      } else if (error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
-        const requisito = document.querySelector('.requisito');
-        requisito.style.display = 'none';
+          const errorEmailInUse = document.querySelector(
+            '.requisito-emailInUse'
+          );
+          errorEmailInUse.style.display = 'block';
+        } else if (
+          error.message ===
+          'Firebase: Password should be at least 6 characters (auth/weak-password).'
+        ) {
+          const requisito = document.querySelector('.requisito');
+          requisito.style.display = 'none';
 
-        const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
-        errorPasswordVulnerable.style.display = 'block';
-      }
-    });
+          const errorPasswordVulnerable = document.querySelector(
+            '.requisito-passwordVulnerable'
+          );
+          errorPasswordVulnerable.style.display = 'block';
+        }
+      });
   });
 };
 
@@ -155,3 +174,6 @@ export const authGoogle = () => {
       });
   });
 };
+
+const auth = getAuth(app);
+export const user = auth.currentUser;

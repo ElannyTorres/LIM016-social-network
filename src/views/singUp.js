@@ -9,6 +9,7 @@ import {
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from '../firebase/app.js';
+import { dataUser } from '../firebase/firestore.js';
 
 export const singUp = () => {
   const divElement = document.createElement('div');
@@ -68,15 +69,17 @@ export const singUp = () => {
 
 export const registrar = () => {
   document.getElementById('buttonRegistrar').addEventListener('click', () => {
+    const names = document.getElementById('inputName').value;
+    const lastName = document.getElementById('inputLastName').value;
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    console.log(email);
-    console.log(password);
     const auth = getAuth(app);
+
     createUserWithEmailAndPassword(auth, email, password)
+
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
+      dataUser(user.uid, names, email, lastName);
       if (typeof user === 'object') {
         const registro = document.querySelector('.buttonRegistrar');
         registro.style.display = 'none';

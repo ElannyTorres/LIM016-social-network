@@ -10,6 +10,8 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
 
+//import { dataUser } from '../firebase/firestore.js';
+
 const db = getFirestore(app);
 
 export const deleteBtn = async () => {
@@ -65,9 +67,11 @@ export const savePost = async () => {
     } else {
       const newPost = await addDoc(collection(db, 'posts'), {
         description: `${postText.value}`,
+        user: `idUser`,
       });
       console.log('Document written with ID: ', newPost.id);
       console.log(postText.value);
+      console.log(newPost);
 
       postCreater.reset();
       postText.focus();

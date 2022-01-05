@@ -9,9 +9,7 @@ import {
   //getDocs
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
-
 const db = getFirestore(app);
-
 /* export const sharePost = async (view, idUser, post) => {
   const postCollection = collection(db, view);
   const addPost = await addDoc(postCollection, {
@@ -49,7 +47,6 @@ querySnapshot.forEach((doc) => {
     }
   }
 }
-
 export { docRef }; */
 export const dataUser = async (id, Username, Correo, Name) => {
   // Add a new document in collection "cities"

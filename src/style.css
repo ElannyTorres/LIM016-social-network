@@ -16,22 +16,22 @@
 }
 body {
   background-image: url(./img/fondo.png);
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
   height: 100vh;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
 }
 #root {
   background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   justify-content: center;
 }
+#root > div {
+  padding-bottom: 4rem;
+}
 footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-
   position: fixed;
   left: 0;
   bottom: 0;
@@ -189,7 +189,7 @@ input {
 
 /* Post */
 .titleContainer {
-  background-color: rgba(216, 178, 1, 0.8);
+  background-color: rgba(216, 178, 1, 1);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -209,6 +209,10 @@ input {
 }
 .name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.5rem;
+}
+.status {
+  font-size: 1rem;
 }
 .postContainer {
   display: flex;
@@ -232,22 +236,19 @@ input {
   border-radius: 0.7rem;
   border: none;
 }
-.btnToCreate {
-  display: flex;
+.btnsToCreate {
   margin-top: 0.7rem;
-  flex-direction: row;
-  justify-content: space-evenly;
+  display: flex;
 }
-.btnPicture,
-.btnShare {
-  color: var(--alice-blue);
+.btnsToCreate ul {
+  list-style: none;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .btnPicture {
   width: 2rem;
   height: 2rem;
+  border: none;
   border-radius: 5px;
 }
 .btnShare {
@@ -265,7 +266,8 @@ input {
   flex-wrap: wrap;
   justify-content: center;
 }
-.postedOne {
+.postedOne,
+.postEdit {
   background-color: rgba(255, 255, 255, 0.6);
   color: black;
   border-radius: 1rem;
@@ -293,7 +295,9 @@ input {
 .likePosted,
 .sharePosted,
 .editPosted,
-.deletePosted {
+.deletePosted,
+.updateChange,
+.cancelChange {
   width: 3rem;
   height: 2rem;
   border: none;

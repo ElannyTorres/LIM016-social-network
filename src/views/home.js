@@ -141,5 +141,5 @@ export const loginAuthGoogle = () => {
   });
 };
 
-const credential = ['adriana_14@hotmail.com', 'Adriana123456'];
+const credential = ['brisset@gmail.com', 'BrissetLC'];
 console.log(credential);

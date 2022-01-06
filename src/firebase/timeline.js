@@ -10,9 +10,28 @@ import {
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
 
-//import { dataUser } from '../firebase/firestore.js';
+import {
+  userState,
+} from '../views/singUp.js';
+
+// import { dataUser } from '../firebase/firestore.js';
 
 const db = getFirestore(app);
+
+let uid = '';
+let userName = '';
+
+userState((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    uid = user.uid;
+    userName = user.displayName;
+    console.log(uid);
+    console.log(user)
+    // ...
+  }
+});
 
 export const deleteBtn = async () => {
   const btnsDelete = document.querySelectorAll('.deletePosted');
@@ -34,16 +53,18 @@ export const deleteBtn = async () => {
 export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
   const querySnapshot = await getDocs(collection(db, 'posts'));
-  querySnapshot.forEach((doc) => {
-    console.log(`${doc.id} => ${doc.data()}`);
+  querySnapshot.forEach((docs) => {
+    
+    console.log(docs.data());
+    
     postContainer.innerHTML += `
       <div class="postedOne">
-        <div class="postedOneTitle">Publicado por ${doc.id}</div>
-        <div class="postedText">${doc.data().description}</div>
+        <div class="postedOneTitle">Publicado por ${docs.data().autor}</div>
+        <div class="postedText">${docs.data().description}</div>
         <div class="postedBtns">
           <button class="likePosted"><i class="fas fa-heart"></i></button>
           <button class="editPosted"><i class="fas fa-pencil-alt"></i></button>
-          <button class="deletePosted" id="${doc.id}">
+          <button class="deletePosted" id="${docs.id}">
           <i class="far fa-trash-alt"></i>
           </button>
         </div>
@@ -67,7 +88,8 @@ export const savePost = async () => {
     } else {
       const newPost = await addDoc(collection(db, 'posts'), {
         description: `${postText.value}`,
-        user: `idUser`,
+        user: uid,
+        autor: userName,
       });
       console.log('Document written with ID: ', newPost.id);
       console.log(postText.value);

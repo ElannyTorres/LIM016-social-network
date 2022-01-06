@@ -66,18 +66,19 @@ export const dataUser = async (id, Username, Correo, Name) => {
     name: Username,
     lastNames: Name,
     correo: Correo,
+    idUser: id,
   });
 };
 
-//unir dos colecciones
-export const collectionDate = async()=>{
+// unir dos colecciones
+export const collectionDate = async () => {
   const q = query(collection(db, "posts"), where("user", "==", true));
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
   });
-}
+};
 
 /*
 const baseDatos = getDatabase();

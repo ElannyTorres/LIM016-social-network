@@ -184,5 +184,4 @@ export const authGoogle = () => {
   });
 };
 
-const auth = getAuth(app);
 export const user = auth.currentUser;

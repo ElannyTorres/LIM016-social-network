@@ -78,20 +78,6 @@ export const loadPosts = async () => {
   deleteBtn();
 };
 
-export const deleteBtn = async () => {
-  const btnsDelete = document.querySelectorAll('.deletePosted');
-
-  btnsDelete.forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      /* console.log('deleting', btn.id); */
-      const deleted = await deleteDoc(doc(db, 'posts', btn.id));
-      const postToEliminate = document.getElementById('post' + btn.id);
-      console.log(postToEliminate);
-      postToEliminate.innerHTML = '';
-    });
-  });
-};
-
 export const savePost = async () => {
   const postCreater = document.querySelector('#postForm');
   const postContainer = document.querySelector('.posted');

@@ -1,12 +1,21 @@
- // Initialize Cloud Firestore through Firebase
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-console */
 import {
   getFirestore,
-  //collection,
   //addDoc,
   doc,
   setDoc,
+  collection,
+  addDoc,
+  //query,
+  //where,
+  //getDocs,
+  //getDatabase,
+  //ref,
+  //child,
+  //get,
+  //onValue,
   //getDoc,
-  //getDocs
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
 const db = getFirestore(app);
@@ -49,11 +58,51 @@ querySnapshot.forEach((doc) => {
 }
 export { docRef }; */
 export const dataUser = async (id, Username, Correo, Name) => {
-  // Add a new document in collection "cities"
   const users = doc(db, 'usuarios', id);
   await setDoc(users, {
     name: Username,
     lastNames: Name,
     correo: Correo,
+    idUser: id,
   });
 };
+
+export const newPost = async (textPost, uid, userName) => {
+  const createPosts = await addDoc(collection(db, 'posts'), {
+    description: textPost,
+    user: uid,
+    autor: userName,
+  });
+};
+
+
+/*
+// unir dos colecciones
+export const collectionDate = async () => {
+  const q = query(collection(db, "posts"), where("user", "==", true));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+  });
+};*/
+
+/*
+const baseDatos = getDatabase();
+const starCountRef = ref(baseDatos, 'posts/' + postId + '/usuarios');
+onValue(starCountRef, (snapshot) => {
+  const data = snapshot.val();
+  updateStarCount(postElement, data);
+});
+*/
+/*
+const dbRef = ref(getDatabase());
+get((dbRef, `usuarios/${name}`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    console.log(snapshot.val());
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
+});*/

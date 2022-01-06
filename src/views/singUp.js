@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from '../firebase/app.js';
@@ -66,6 +67,12 @@ export const singUp = () => {
 
   return divElement;
 };
+
+const auth = getAuth();
+
+export function userState(user) {
+  return onAuthStateChanged(auth, (user));
+}
 
 export const registrar = () => {
   document.getElementById('buttonRegistrar').addEventListener('click', () => {

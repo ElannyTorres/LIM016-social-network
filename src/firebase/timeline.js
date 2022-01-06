@@ -8,13 +8,14 @@ import {
   doc,
   deleteDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-import { app } from './app.js';
+
+import {
+  app,
+} from './app.js';
 
 import {
   userState,
 } from '../views/singUp.js';
-
-// import { dataUser } from '../firebase/firestore.js';
 
 const db = getFirestore(app);
 
@@ -23,13 +24,10 @@ let userName = '';
 
 userState((user) => {
   if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
     uid = user.uid;
     userName = user.displayName;
     console.log(uid);
-    console.log(user)
-    // ...
+    console.log(user);
   }
 });
 

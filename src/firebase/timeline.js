@@ -3,7 +3,6 @@
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
   doc,
   deleteDoc,
@@ -16,6 +15,10 @@ import {
 import {
   userState,
 } from '../views/singUp.js';
+
+import {
+  newPost,
+} from './firestore.js';
 
 const db = getFirestore(app);
 
@@ -81,14 +84,9 @@ export const savePost = async () => {
 
     const postText = postCreater.textDescription;
     if (postText.value === '') {
-      /* console.log('input vacío'); */
       alert('Mensaje vacío.\n Escriba algo para poder compartir.');
     } else {
-      const newPost = await addDoc(collection(db, 'posts'), {
-        description: `${postText.value}`,
-        user: uid,
-        autor: userName,
-      });
+      newPost(postText.value, uid, userName);
       console.log('Document written with ID: ', newPost.id);
       console.log(postText.value);
       console.log(newPost);

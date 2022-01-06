@@ -6,9 +6,10 @@ import {
   doc,
   setDoc,
   collection,
-  query,
-  where,
-  getDocs,
+  addDoc,
+  //query,
+  //where,
+  //getDocs,
   //getDatabase,
   //ref,
   //child,
@@ -60,7 +61,6 @@ querySnapshot.forEach((doc) => {
 
 export { docRef }; */
 export const dataUser = async (id, Username, Correo, Name) => {
-  // Add a new document in collection "cities"
   const users = doc(db, 'usuarios', id);
   await setDoc(users, {
     name: Username,
@@ -70,6 +70,16 @@ export const dataUser = async (id, Username, Correo, Name) => {
   });
 };
 
+export const newPost = async (textPost, uid, userName) => {
+  const createPosts = await addDoc(collection(db, 'posts'), {
+    description: textPost,
+    user: uid,
+    autor: userName,
+  });
+};
+
+
+/*
 // unir dos colecciones
 export const collectionDate = async () => {
   const q = query(collection(db, "posts"), where("user", "==", true));
@@ -78,7 +88,7 @@ export const collectionDate = async () => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
   });
-};
+};*/
 
 /*
 const baseDatos = getDatabase();

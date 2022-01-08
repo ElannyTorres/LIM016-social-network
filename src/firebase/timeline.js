@@ -73,7 +73,7 @@ export const savePost = async () => {
         description: `${postText.value}`,
       });
       console.log('Document written with ID: ', newPost.id);
-      console.log(postText.value);
+      // console.log(postText.value);
 
       postCreater.reset();
       postText.focus();
@@ -89,8 +89,10 @@ export const editBtn = async () => {
 
   btnsEdit.forEach((btn) => {
     btn.addEventListener('click', async () => {
-      const postToEdit = document.querySelector(btn.id);
+      const postToEdit = document.querySelector('post' + btn.id);
+      // const postToEdit = document.querySelector(btn.id);
       console.log(postToEdit);
+
       const modalEdit = `
       <div class="postedOne postEdit">
         <div class="postedOneTitle postEditTitle">Publicado por ${btn.id} </div>

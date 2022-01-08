@@ -15,10 +15,6 @@ export default () => {
     </div>
     </section>
 
-
-
-
-
     <footer>
         <div class="titleContainer">
             <ul>

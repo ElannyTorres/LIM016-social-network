@@ -2,7 +2,9 @@
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import {
-  getAuth, signInWithEmailAndPassword, GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
@@ -61,6 +63,9 @@ export const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user.uid);
+        sessionStorage.setItem('userID', user.uid);
+
         if (typeof user === 'object') {
           window.location.hash = '#/posts';
         }
@@ -120,7 +125,6 @@ export const loginAuthGoogle = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log('google sing in');
         if (typeof user === 'object') {
           window.location.hash = '#/posts';
         }

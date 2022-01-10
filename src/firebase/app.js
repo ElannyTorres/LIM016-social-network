@@ -1,26 +1,27 @@
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-
 /* Inicializanco FireStore */
 import {
   getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
+
+/* import de aunth de firetore */
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  // eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -37,19 +38,23 @@ export const db = getFirestore(app);
 
 export {
   getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
+};
+
+export const auth = getAuth(app);
+// Inicializa la authentication
+export const provider = new GoogleAuthProvider();
+
+export {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
 };

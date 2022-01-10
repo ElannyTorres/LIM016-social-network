@@ -2,14 +2,15 @@
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
+  singUpGmail,
   // eslint-disable-next-line import/no-unresolved
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
-import { app } from '../firebase/app.js';
+} from '../firebase/auth_functions.js';
+
+import {
+  app,
+  auth,
+  provider,
+} from '../firebase/app.js';
 import { dataUser } from '../firebase/firestore.js';
 
 export const singUp = () => {
@@ -67,8 +68,6 @@ export const singUp = () => {
 
   return divElement;
 };
-
-const auth = getAuth();
 
 export function userState(user) {
   return onAuthStateChanged(auth, (user));
@@ -156,9 +155,7 @@ export const registrar = () => {
 
 export const authGoogle = () => {
   document.getElementById('url-gmail').addEventListener('click', () => {
-    const provider = new GoogleAuthProvider();
-
-    const auth = getAuth(app);
+    singUpGmail(provider)
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.

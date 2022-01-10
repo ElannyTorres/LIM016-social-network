@@ -13,8 +13,10 @@ export default () => {
       <form id="postForm" name="postForm" class="createPostContainer">
         <textarea rows="3" id="textDescription" class="textToCreate" placeholder="¿Qué deseas compartir?" autofocus></textarea>
         <div class="btnsToCreate">
+          <span class="input-group-text">Selecciona tu archivo</span>
+          <input type="url" aria-label="First name" class="" id="image">
+        </div>
           <ul>
-            <li><button class="btnPicture"><i class="fas fa-image"></i></button></li>
             <li><button type="submit" id="btnShare" class="btnShare">Compartir</button></li>
           </ul>
         </div>

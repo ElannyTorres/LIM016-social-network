@@ -63,6 +63,9 @@ export const loadPosts = async () => {
     postContainer.innerHTML += `
       <div class="postedOne">
         <div class="postedOneTitle">Publicado por ${docs.data().autor}</div>
+        <div class="col-md-3 d-flex justify-content-center">
+                <img src="${docs.data().url}" class="img" alt="...">
+              </div>
         <div class="postedText">${docs.data().description}</div>
         <div class="postedBtns">
           <button class="likePosted"><i class="fas fa-heart"></i></button>
@@ -80,7 +83,8 @@ export const loadPosts = async () => {
 
 export const savePost = async () => {
   const postCreater = document.querySelector('#postForm');
-  const postContainer = document.querySelector('.posted');
+  const image = document.querySelector('#image').value;
+  console.log(postCreater, image)
 
   postCreater.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -89,9 +93,8 @@ export const savePost = async () => {
     if (postText.value === '') {
       alert('Mensaje vacío.\n Escriba algo para poder compartir.');
     } else {
-      newPost(postText.value, uid, userName);
+      newPost(postText.value, uid, userName, image);
       console.log('Document written with ID: ', newPost.id);
-      // console.log(postText.value);
       postCreater.reset();
       postText.focus();
 

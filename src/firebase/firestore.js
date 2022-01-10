@@ -67,11 +67,12 @@ export const dataUser = async (id, Username, Correo, Name) => {
   });
 };
 
-export const newPost = async (textPost, uid, userName) => {
+export const newPost = async (textPost, uid, userName, url) => {
   const createPosts = await addDoc(collection(db, 'posts'), {
     description: textPost,
     user: uid,
     autor: userName,
+    image: url,
   });
 };
 

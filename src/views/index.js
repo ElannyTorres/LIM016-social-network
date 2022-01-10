@@ -5,7 +5,7 @@ import {
   deleteBtn,
   loadPosts,
   editBtn,
-} from '../firebase/timeline.js';
+} from '../firebase/timeline_functions.js';
 import Posts from './posts.js';
 import Profile from './profile.js';
 import Default from './default.js';

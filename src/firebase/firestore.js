@@ -2,22 +2,23 @@
 /* eslint-disable no-console */
 import {
   getFirestore,
-  //addDoc,
+  // addDoc,
   doc,
   setDoc,
   collection,
   addDoc,
-  //query,
-  //where,
-  //getDocs,
-  //getDatabase,
-  //ref,
-  //child,
-  //get,
-  //onValue,
-  //getDoc,
+  // query,
+  // where,
+  // getDocs,
+  // getDatabase,
+  // ref,
+  // child,
+  // get,
+  // onValue,
+  // getDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 import { app } from './app.js';
+
 const db = getFirestore(app);
 /* export const sharePost = async (view, idUser, post) => {
   const postCollection = collection(db, view);
@@ -76,7 +77,6 @@ export const newPost = async (textPost, uid, userName, url) => {
   });
 };
 
-
 /*
 // unir dos colecciones
 export const collectionDate = async () => {
@@ -86,7 +86,7 @@ export const collectionDate = async () => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
   });
-};*/
+}; */
 
 /*
 const baseDatos = getDatabase();
@@ -106,4 +106,4 @@ get((dbRef, `usuarios/${name}`)).then((snapshot) => {
   }
 }).catch((error) => {
   console.error(error);
-});*/
+}); */

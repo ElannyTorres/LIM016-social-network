@@ -4,7 +4,6 @@ import {
   // app,
   db,
   // getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
@@ -19,6 +18,7 @@ import {
   // onValue,
   getDoc,
   updateDoc,
+  deleteDoc,
 } from './app.js';
 
 export const querySnapshot = async () => {
@@ -43,8 +43,13 @@ export const newPost = async (textPost, uid, userName) => {
     description: textPost,
     user: uid,
     autor: userName,
-    image: url,
+    like: [],
   });
+};
+
+export const deletePost = async (id) => {
+  const deleted = await doc(db, 'posts', id);
+  return deleteDoc(deleted);
 };
 
 export const editingText = async (id) => {

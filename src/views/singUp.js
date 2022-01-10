@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  // getCurrentUser,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 import { app } from '../firebase/app.js';
@@ -71,7 +72,7 @@ export const singUp = () => {
 const auth = getAuth();
 
 export function userState(user) {
-  return onAuthStateChanged(auth, (user));
+  return onAuthStateChanged(auth, user);
 }
 
 export const registrar = () => {
@@ -83,12 +84,12 @@ export const registrar = () => {
     const auth = getAuth(app);
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      dataUser(user.uid, names, email, lastName);
-      if (typeof user === 'object') {
-        const registro = document.querySelector('.buttonRegistrar');
-        registro.style.display = 'none';
+      .then((userCredential) => {
+        const user = userCredential.user;
+        dataUser(user.uid, names, email, lastName);
+        if (typeof user === 'object') {
+          const registro = document.querySelector('.buttonRegistrar');
+          registro.style.display = 'none';
 
           const errorInvalidEmail = document.querySelector(
             '.requisito-invalidEmail'

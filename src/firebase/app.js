@@ -19,6 +19,7 @@ import {
   // onValue,
   getDoc,
   updateDoc,
+  deleteDoc,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
@@ -52,4 +53,5 @@ export {
   // onValue,
   getDoc,
   updateDoc,
+  deleteDoc,
 };

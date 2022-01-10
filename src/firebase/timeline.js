@@ -10,17 +10,11 @@ import {
   updateDoc,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
-import {
-  app,
-} from './app.js';
+import { app } from './app.js';
 
-import {
-  userState,
-} from '../views/singUp.js';
+import { userState } from '../views/singUp.js';
 
-import {
-  newPost,
-} from './firestore.js';
+import { newPost } from './firestore.js';
 
 const db = getFirestore(app);
 
@@ -57,9 +51,8 @@ export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
   const querySnapshot = await getDocs(collection(db, 'posts'));
   querySnapshot.forEach((docs) => {
-    
     console.log(docs.data());
-    
+    // postContainer.innerHTML = '';
     postContainer.innerHTML += `
       <div class="postedOne">
         <div class="postedOneTitle">Publicado por ${docs.data().autor}</div>
@@ -94,7 +87,7 @@ export const savePost = async () => {
       // console.log(postText.value);
       postCreater.reset();
       postText.focus();
-
+      postContainer.innerHTML = '';
       loadPosts();
     }
   });

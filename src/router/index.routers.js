@@ -3,6 +3,7 @@ import { components } from '../views/index.js';
 
 const content = document.querySelector('#root');
 
+// eslint-disable-next-line consistent-return
 const router = (route) => {
   content.innerHTML = '';
   switch (route) {

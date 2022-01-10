@@ -1,22 +1,17 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-undef */
+/* eslint-disable prefer-template */
+/* eslint-disable no-unused-vars */
+/* /* /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  deleteDoc,
-  updateDoc,
-} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
-
-import { app } from './app.js';
-
 import { userState } from '../views/singUp.js';
 
-import { newPost } from './firestore.js';
-
-const db = getFirestore(app);
+import {
+  newPost,
+  querySnapshot,
+  editingText,
+  updateDocu,
+} from './firestore.js';
 
 let uid = '';
 let userName = '';
@@ -49,25 +44,23 @@ export const deleteBtn = async () => {
 
 export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
-  const querySnapshot = await getDocs(collection(db, 'posts'));
-  querySnapshot.forEach((docs) => {
-    console.log(docs.data());
+  const docRef = await querySnapshot();
+  docRef.forEach((docs) => {
     // postContainer.innerHTML = '';
     postContainer.innerHTML += `
-      <div class="postedOne">
-        <div class="postedOneTitle">Publicado por ${docs.data().autor}</div>
-        <div class="col-md-3 d-flex justify-content-center">
-                <img src="${docs.data().url}" class="img" alt="...">
-              </div>
-        <div class="postedText">${docs.data().description}</div>
-        <div class="postedBtns">
-          <button class="likePosted"><i class="fas fa-heart"></i></button>
-          <button class="editPosted"><i class="fas fa-pencil-alt"></i></button>
-          <button class="deletePosted" id="${docs.id}">
-          <i class="far fa-trash-alt"></i>
-          </button>
-        </div>
-      </div>
+    <div class="postedOne">
+    <div class="postedOneTitle">Publicado por ${docs.data().autor}</div>
+    <div class="postedText">${docs.data().description}</div>
+    <div class="postedBtns">
+    <button class="likePosted"><i class="fas fa-heart"></i></button>
+    <button class="editPosted" id="${docs.id}">
+    <i class="fas fa-pencil-alt"></i>
+    </button>
+    <button class="deletePosted" id="${docs.id}">
+    <i class="far fa-trash-alt"></i>
+    </button>
+    </div>
+    </div> 
     `;
   });
   editBtn();
@@ -105,15 +98,13 @@ export const editBtn = async () => {
       const postToEdit = document.querySelector('post' + btn.id);
       // const postToEdit = document.querySelector(btn.id);
       console.log(postToEdit);
-
       const modalEdit = `
-      <div class="postedOne postEdit">
-        <div class="postedOneTitle postEditTitle">Publicado por ${btn.id} </div>
+      <div class="postedOne postEdit hidden">
         <div class="postedText textToEdit">
           <textarea type="text" id="${btn.id}" class="newText"></textarea>
         </div>
         <div class="postedBtns">
-          <button class="updateChange">
+          <button class="updateChange" id="${btn.id}">
             <i class="fas fa-paper-plane"></i>
           </button>
           <button class="cancelChange">
@@ -126,9 +117,10 @@ export const editBtn = async () => {
       const textToEdit = document.querySelector('.newText');
       // console.log(textToEdit);
       // console.log('editing', btn.id);
-      const editingText = await getDoc(doc(db, 'posts', btn.id));
-      const textForEdit = editingText.data().description;
-      // console.log(textForEdit);
+      const idBtn = btn.id;
+      const edText = await editingText(idBtn);
+      const textForEdit = edText.data().description;
+      console.log(textForEdit);
       textToEdit.value = textForEdit;
       updatePost();
       cancelUpdate();
@@ -137,21 +129,29 @@ export const editBtn = async () => {
 };
 
 export const updatePost = async () => {
+  const postContainer = document.querySelector('.posted');
   const updateBtn = document.querySelector('.updateChange');
-  // console.log(updateBtn);
-  updateBtn.addEventListener('click', async (btn) => {
-    console.log('updating', btn.id);
-    /* const textUpdating = document.querySelector('.newText');
-    const textToUpdate = doc(db, 'posts', btn.id);
-    const updateText = await updateDoc(doc, {
-      description: textUpdating.value,
-    }); */
+  const updateId = updateBtn.id;
+  updateBtn.addEventListener('click', async () => {
+    console.log('updating', updateId);
+    const textUpdating = document.querySelector('.newText').value;
+    // FireStore
+    // eslint-disable-next-line no-unused-vars
+    const updateDocus = await updateDocu(updateId, {
+      description: textUpdating,
+    });
+    postContainer.innerHTML = '';
+    loadPosts();
   });
 };
 
-export const cancelUpdate = async () => {
-  const cancelBtn = document.getElementsByClassName('cancelChange');
-  cancelBtn.addEventListener('click', async (btn) => {
-    console.log('canceling', btn);
+const cancelUpdate = () => {
+  const postContainer = document.querySelector('.posted');
+  const cancelBtn = document.querySelector('.cancelChange');
+  const postEdit = document.querySelector('.postEdit');
+  cancelBtn.addEventListener('click', () => {
+    postEdit.style.display = 'none';
+    postContainer.innerHTML = '';
+    loadPosts();
   });
 };

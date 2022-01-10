@@ -276,6 +276,12 @@ input {
   display: flex;
   flex-direction: column;
 }
+.postEdit {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  top: 12.3rem;
+}
 .postedOneTitle {
   height: 3rem;
   width: 18.7rem;

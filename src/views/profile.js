@@ -1,14 +1,18 @@
+/* eslint-disable prefer-const */
 export default () => {
+// let dataInitial = sessionStorage.getItem('userData');
+  const profileData = JSON.parse(sessionStorage.userData);
+
   const views = `
     <section id="profileSection">
     <div class="containerProfile">
         <img class="coverPhoto" src="./img/coverphoto.png" alt="">
         <div class="infoProfile">
             <div class="profilePhoto">
-                <img src="./img/foto.png" alt="Profile Photo">
+                <img src="${profileData.photoUrl}" alt="Profile Photo">
             </div>
             <div class="profileInfo">
-                <h4 class="name">Fulana Suarez</h4>
+                <h4 class="name">${profileData.displayName}</h4>
                 <h6 class="status">Amante de la comida</h6>
             </div>
         </div>

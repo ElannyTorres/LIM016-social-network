@@ -4,7 +4,7 @@
 /* eslint-disable no-unused-vars */
 /* /* /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
-import { userState } from '../views/singUp.js';
+import { userState } from './auth_functions.js';
 
 import {
   newPost,

@@ -26,6 +26,7 @@ export const querySnapshot = async () => {
   return getDocs(getDocus);
 };
 
+/** Creaccion de usuario con correo y contraseña */
 export const dataUser = async (id, Username, Correo, Name) => {
   const users = await doc(db, 'usuarios', id);
   return setDoc(users, {
@@ -33,6 +34,16 @@ export const dataUser = async (id, Username, Correo, Name) => {
     lastNames: Name,
     correo: Correo,
     idUser: id,
+  });
+};
+
+/** creacion de usuario */
+export const userGoogle = async (id, result) => {
+  const refId = await doc(db, 'usuarios', id);
+  return setDoc(refId, {
+    name: result.displayName,
+    correo: result.email,
+    uidUser: result.uid,
   });
 };
 

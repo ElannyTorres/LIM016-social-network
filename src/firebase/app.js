@@ -1,27 +1,28 @@
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js';
-
 /* Inicializanco FireStore */
 import {
   getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
   deleteDoc,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
+
+/* import de aunth de firetore */
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  // eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -38,20 +39,28 @@ export const db = getFirestore(app);
 
 export {
   getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
   deleteDoc,
+};
+
+export const auth = getAuth(app);
+// Inicializa la authentication
+export const provider = new GoogleAuthProvider();
+
+/** creacion de user con correo y password */
+export const register = (email, password) => {
+  createUserWithEmailAndPassword(auth, email, password);
+};
+
+export {
+  signInWithPopup,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
 };

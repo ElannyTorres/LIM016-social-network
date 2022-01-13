@@ -41,7 +41,6 @@ export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
   const docRef = await querySnapshot();
   docRef.forEach((docs) => {
-    // postContainer.innerHTML = '';
     postContainer.innerHTML += `
     <div class="postedOne" id="postN${docs.id}">
     <section id="postSec${docs.id}">
@@ -104,9 +103,11 @@ export const savePost = async () => {
           <div class="postedBtns">
             <button class="likePosted">
               <i class="fas fa-heart"></i>
-              <p class="likeCount">
-                ${updatePosted.like.length}
-              </p>
+              <span>
+                <p class="likeCount">
+                  ${updatePosted.like.length}
+                </p>
+              </span>
             </button>
             <button class="editPosted" id="${postID}">
               <i class="fas fa-pencil-alt"></i>
@@ -133,7 +134,6 @@ export const savePost = async () => {
 export const editBtn = async () => {
   const postContainer = document.querySelector('.posted');
   const btnsEdit = document.querySelectorAll('.editPosted');
-
   btnsEdit.forEach((btn) => {
     btn.addEventListener('click', async () => {
       const postName = '#postN' + btn.id;
@@ -141,6 +141,7 @@ export const editBtn = async () => {
       const postToEdit = document.querySelector(postName);
       const secNameEdit = document.querySelector(secName);
       console.log(secNameEdit);
+      secNameEdit.style.display = 'hidden';
       const modalEdit = `
       <div class="postedOne postEdit">
         <div class="postedText textToEdit">
@@ -157,10 +158,7 @@ export const editBtn = async () => {
       </div>
       `;
       postToEdit.innerHTML += modalEdit;
-      secNameEdit.style.display = 'none';
       const textToEdit = document.querySelector('.newText');
-      // console.log(textToEdit);
-      // console.log('editing', btn.id);
       const idBtn = btn.id;
       const edText = await editingText(idBtn);
       const textForEdit = edText.data().description;
@@ -189,13 +187,10 @@ const updatePost = async () => {
 };
 
 const cancelUpdate = () => {
-  const postContainer = document.querySelector('.posted');
   const cancelBtn = document.querySelector('.cancelChange');
   const postEdit = document.querySelector('.postEdit');
   cancelBtn.addEventListener('click', () => {
     postEdit.style.display = 'none';
-    postContainer.innerHTML = '';
-    loadPosts();
   });
 };
 

@@ -36,6 +36,7 @@ export default () => {
       `;
 
   const divElement = document.createElement('div');
+  divElement.setAttribute('id', 'postGridView');
   divElement.innerHTML = views;
 
   return divElement;

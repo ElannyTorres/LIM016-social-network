@@ -82,7 +82,7 @@ export const registrar = () => {
     const lastName = document.getElementById('inputLastName').value;
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    auth();
+    //auth();
     //register(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

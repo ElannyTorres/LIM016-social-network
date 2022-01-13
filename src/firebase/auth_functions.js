@@ -1,14 +1,14 @@
 import {
-    auth,
-    getAuth,
-    createUserWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-  } from './app.js';
+  auth,
+  signInWithPopup,
+  onAuthStateChanged,
+} from './app.js';
 
+/** id de usuario */
+export function userState(user) {
+  return onAuthStateChanged(auth, user);
+}
 /** creacion de user con gmail */
-
-export const singUpGmail = (provider) => {
-  signInWithPopup(auth, provider);
-};
+export function singUpGmail(provider) {
+  return signInWithPopup(auth, provider);
+}

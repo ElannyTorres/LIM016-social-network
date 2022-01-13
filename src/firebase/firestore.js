@@ -4,7 +4,6 @@ import {
   // app,
   db,
   // getFirestore,
-  // addDoc,
   doc,
   setDoc,
   collection,
@@ -19,6 +18,7 @@ import {
   // onValue,
   getDoc,
   updateDoc,
+  deleteDoc,
 } from './app.js';
 
 export const querySnapshot = async () => {
@@ -26,6 +26,7 @@ export const querySnapshot = async () => {
   return getDocs(getDocus);
 };
 
+/** Creaccion de usuario con correo y contraseña */
 export const dataUser = async (id, Username, Correo, Name) => {
   const users = await doc(db, 'usuarios', id);
   return setDoc(users, {
@@ -36,6 +37,16 @@ export const dataUser = async (id, Username, Correo, Name) => {
   });
 };
 
+/** creacion de usuario */
+export const userGoogle = async (id, result) => {
+  const refId = await doc(db, 'usuarios', id);
+  return setDoc(refId, {
+    name: result.displayName,
+    correo: result.email,
+    uidUser: result.uid,
+  });
+};
+
 export const newPost = async (textPost, uid, userName) => {
   // eslint-disable-next-line no-unused-vars
   const createPosts = await collection(db, 'posts');
@@ -43,8 +54,13 @@ export const newPost = async (textPost, uid, userName) => {
     description: textPost,
     user: uid,
     autor: userName,
-    image: url,
+    like: [],
   });
+};
+
+export const deletePost = async (id) => {
+  const deleted = await doc(db, 'posts', id);
+  return deleteDoc(deleted);
 };
 
 export const editingText = async (id) => {

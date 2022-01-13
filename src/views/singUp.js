@@ -1,17 +1,23 @@
+/* eslint-disable spaced-comment */
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import {
   singUpGmail,
-  // eslint-disable-next-line import/no-unresolved
 } from '../firebase/auth_functions.js';
 
 import {
-  app,
   auth,
   provider,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  register,
 } from '../firebase/app.js';
-import { dataUser } from '../firebase/firestore.js';
+
+import {
+  dataUser,
+} from '../firebase/firestore.js';
 
 export const singUp = () => {
   const divElement = document.createElement('div');
@@ -69,44 +75,33 @@ export const singUp = () => {
   return divElement;
 };
 
-export function userState(user) {
-  return onAuthStateChanged(auth, (user));
-}
-
 export const registrar = () => {
   document.getElementById('buttonRegistrar').addEventListener('click', () => {
+    sessionStorage.clear();
     const names = document.getElementById('inputName').value;
     const lastName = document.getElementById('inputLastName').value;
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    const auth = getAuth(app);
-
+    auth();
+    //register(email, password);
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      dataUser(user.uid, names, email, lastName);
-      if (typeof user === 'object') {
-        const registro = document.querySelector('.buttonRegistrar');
-        registro.style.display = 'none';
+      .then((userCredential) => {
+        const user = userCredential.user;
+        dataUser(user.uid, names, email, lastName);
+        if (typeof user === 'object') {
+          const registro = document.querySelector('.buttonRegistrar');
+          registro.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector(
-            '.requisito-invalidEmail'
-          );
+          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
           errorInvalidEmail.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector(
-            '.requisito-emailInUse'
-          );
+          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
           errorEmailInUse.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector(
-            '.requisito-passwordVulnerable'
-          );
+          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
           errorPasswordVulnerable.style.display = 'none';
 
-          const loginDesdeRegistrar = document.querySelector(
-            '.loginDesdeRegistrar'
-          );
+          const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
           const login = document.createElement('button');
           login.innerHTML = `<button class="button-login" id="button-login">
         <a href="#/" id="profile">login</a></button>`;
@@ -123,9 +118,7 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector(
-            '.requisito-invalidEmail'
-          );
+          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
           errorInvalidEmail.style.display = 'block';
         } else if (
           error.message === 'Firebase: Error (auth/email-already-in-use).'
@@ -133,20 +126,15 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector(
-            '.requisito-emailInUse'
-          );
+          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
           errorEmailInUse.style.display = 'block';
         } else if (
-          error.message ===
-          'Firebase: Password should be at least 6 characters (auth/weak-password).'
+          error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).'
         ) {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector(
-            '.requisito-passwordVulnerable'
-          );
+          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
           errorPasswordVulnerable.style.display = 'block';
         }
       });
@@ -155,26 +143,22 @@ export const registrar = () => {
 
 export const authGoogle = () => {
   document.getElementById('url-gmail').addEventListener('click', () => {
+    sessionStorage.clear();
     singUpGmail(provider)
-    signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        console.log('google sing in');
-        if (typeof user === 'object') {
+       dataUser(result.user.uid, result.user.displayName, result.user.email, result.user.displayName);
+
+       sessionStorage.setItem('userData', JSON.stringify(result.user.reloadUserInfo));
+        if (typeof result === 'object') {
           window.location.hash = '#/posts';
         }
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
-        // The email of the user's account used.
         const email = error.email;
-        // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log('err');
       });

@@ -10,6 +10,7 @@ import {
   getDocs,
   getDoc,
   updateDoc,
+  deleteDoc,
   // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js';
 
@@ -45,16 +46,21 @@ export {
   getDocs,
   getDoc,
   updateDoc,
+  deleteDoc,
 };
 
 export const auth = getAuth(app);
 // Inicializa la authentication
 export const provider = new GoogleAuthProvider();
 
+/** creacion de user con correo y password */
+export const register = (email, password) => {
+  createUserWithEmailAndPassword(auth, email, password);
+};
+
 export {
-  getAuth,
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
 };

@@ -1,12 +1,19 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 import {
-  getAuth, signInWithEmailAndPassword, GoogleAuthProvider,
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithPopup,
 } from 'https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js';
 
 import { app } from '../firebase/app.js';
+
+import {
+  dataUser,
+} from '../firebase/firestore.js';
 
 export const Home = () => {
   const views = `
@@ -61,6 +68,9 @@ export const login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user.uid);
+        sessionStorage.setItem('userID', user.uid);
+
         if (typeof user === 'object') {
           window.location.hash = '#/posts';
         }
@@ -81,7 +91,6 @@ export const login = () => {
             userNotFound.style.display = 'none';
           });
         } else if (error.message === 'Firebase: Error (auth/invalid-email).') {
-          // setTimeout(function () {
           const modalError = document.querySelector('.modalErrorLogin');
           modalError.style.display = 'block';
           modalError.innerHTML = `
@@ -91,7 +100,6 @@ export const login = () => {
           document.querySelector('.close').addEventListener('click', () => {
             modalError.style.display = 'none';
           });
-          // }, 3000);
         } else if (error.message === 'Firebase: Error (auth/wrong-password).') {
           const wrongPassword = document.querySelector('.modalErrorLogin');
           wrongPassword.style.display = 'block';
@@ -110,17 +118,18 @@ export const login = () => {
 // con Gmail
 export const loginAuthGoogle = () => {
   document.getElementById('url-gmail').addEventListener('click', () => {
+    sessionStorage.clear();
     const provider = new GoogleAuthProvider();
-
     const auth = getAuth(app);
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
+        dataUser(result.user.uid, result.user.displayName, result.user.email, result.user.displayName);
+        sessionStorage.setItem('userData', JSON.stringify(result.user.reloadUserInfo));
         // The signed-in user info.
         const user = result.user;
-        console.log('google sing in');
         if (typeof user === 'object') {
           window.location.hash = '#/posts';
         }

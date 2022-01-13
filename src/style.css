@@ -18,11 +18,11 @@ body {
   background-image: url(./img/fondo.png);
   background-repeat: repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
 }
 #root {
   background: rgba(0, 0, 0, 0.5);
-  height: 100vh;
+  height: 100%;
   justify-content: center;
 }
 #root > div {
@@ -147,6 +147,8 @@ input {
 @media only screen and (min-width: 768px) {
   .login {
     flex-direction: row;
+    height: 75vh;
+    margin-top: 3rem;
   }
 }
 
@@ -188,6 +190,21 @@ input {
 }
 
 /* Post */
+.modalContent {
+  background-color: red;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  margin-top: -155%;
+}
+.hideIt {
+  display: none;
+}
 .titleContainer {
   background-color: rgba(216, 178, 1, 1);
   width: 100%;
@@ -205,7 +222,9 @@ input {
   color: #edf2f4;
 }
 .profilePhoto > img {
-  width: 7rem;
+  width: 6rem;
+  margin: 1rem;
+  border-radius: 50%;
 }
 .name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -250,6 +269,8 @@ input {
   height: 2rem;
   border: none;
   border-radius: 5px;
+  margin-right: 8rem;
+  margin-left: -2.5rem;
 }
 .btnShare {
   background-color: rgb(73, 160, 120);
@@ -277,7 +298,6 @@ input {
   flex-direction: column;
 }
 .postEdit {
-  position: absolute;
   background-color: rgba(0, 0, 0, 0.9);
   color: white;
   padding-top: 1rem;
@@ -294,6 +314,10 @@ input {
 }
 .postedBtns {
   height: 3rem;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 .postedBtns i {
   font-size: 1rem;
@@ -308,6 +332,13 @@ input {
   height: 2rem;
   border: none;
   border-radius: 1rem;
+}
+.likePosted {
+  width: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .fas {
   font-size: 2rem;
@@ -383,29 +414,154 @@ input {
   margin-bottom: 1rem;
   display: none;
 }
+.modal {
+  position: absolute;
+  left: 3.5rem;
+  top: 17rem;
+}
 .modalErrorLogin {
   display: none;
   color: var(--imperial-red);
   font-size: 2rem;
   position: fixed;
   z-index: 1;
-  padding-top: 72%;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  padding-top: 1rem;
+  width: 70vw;
+  height: 25vh;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 2rem;
 }
-
 .close {
   display: flex;
   justify-content: end;
   padding-right: 1rem;
   font-size: 2.5rem;
 }
-
 .img {
   height: 100px;
   border-radius: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  #root {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* LogIn Section */
+  #viewLogInGrid {
+    grid-column: 1/4;
+  }
+  #loginSection {
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 3.5rem;
+  }
+  #loginForm {
+    grid-column: 2/4;
+  }
+  /* Header */
+  #headerGrid {
+    grid-column: 1/4;
+  }
+  header > ul {
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+    justify-content: space-evenly;
+    padding: 0.5rem;
+    /* position: fixed; */
+  }
+  /* Timeline Section */
+  #postGridView {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .profile {
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid white;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 17rem;
+  }
+  .profilePhoto > img {
+    width: 5.5rem;
+  }
+  .profileInfo {
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .name {
+    justify-content: center;
+  }
+  .profileOne {
+    display: flex;
+    align-items: center;
+  }
+  .newPostSection {
+    margin-top: 1rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+  .postContainer {
+    grid-column: 2/4;
+    width: 26rem;
+    margin-top: 1.5rem;
+    margin-left: 26rem;
+    width: 1rem;
+  }
+  #postForm {
+    width: 34rem;
+  }
+  .btnPicture {
+    margin-right: 19rem;
+    margin-left: -4rem;
+  }
+  #viewTimeLineGrid {
+    grid-column: 2/4;
+  }
+  .timeLineSection {
+    margin-bottom: 0;
+  }
+  .posted {
+    margin-top: 1rem;
+    display: grid;
+    width: 54rem;
+  }
+  .postedOne {
+    width: 34rem;
+  }
+  .postedOneTitle,
+  .postedText {
+    width: inherit;
+  }
+  .postedOneTitle {
+    margin-right: 0;
+  }
+  /* Profile Section */
+  #viewProfileGrid {
+    grid-column: 1/4;
+  }
+  #profileSection {
+    display: flex;
+    justify-content: center;
+  }
+  .containerProfile {
+    width: 30rem;
+    margin-left: 25rem;
+  }
+  .infoProfile {
+    width: 30rem;
+  }
+  .coverPhoto {
+    width: inherit;
+  }
+  /* Footer */
+  #sectionsContainerFooter > ul {
+    display: none;
+  }
 }

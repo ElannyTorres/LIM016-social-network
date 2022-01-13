@@ -1,3 +1,6 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable function-paren-newline */
+/* eslint-disable comma-dangle */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable prefer-template */
@@ -5,6 +8,7 @@
 /* /* /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import { userState } from './auth_functions.js';
+import { showModal } from '../views/showModal.js';
 
 import {
   newPost,
@@ -26,13 +30,24 @@ userState((user) => {
 });
 
 export const deleteBtn = async () => {
-  const postContainer = document.querySelector('.posted');
+  // const postContainer = document.querySelector('.posted');
   const btnsDelete = document.querySelectorAll('.deletePosted');
   btnsDelete.forEach((btn) => {
     btn.addEventListener('click', async () => {
-      deletePost(btn.id);
-      postContainer.innerHTML = '';
-      loadPosts();
+      showModal('Estás a punto de eliminar el post. <br> ¿Estás seguro?');
+      const agreeBtn = document.querySelector('.agreeBtn');
+      console.log(agreeBtn);
+      const postN = '#postN' + btn.id;
+      console.log(postN);
+      agreeBtn.addEventListener('click', async () => {
+        const postToDelete = document.querySelector(postN);
+        console.log(postToDelete);
+        postToDelete.innerHTML = '';
+        deletePost(btn.id);
+      });
+      // deletePost(btn.id);
+      // postContainer.innerHTML = '';
+      // loadPosts();
     });
   });
 };
@@ -41,7 +56,6 @@ export const loadPosts = async () => {
   const postContainer = document.querySelector('.posted');
   const docRef = await querySnapshot();
   docRef.forEach((docs) => {
-    // postContainer.innerHTML = '';
     postContainer.innerHTML += `
     <div class="postedOne" id="postN${docs.id}">
     <section id="postSec${docs.id}">
@@ -81,7 +95,7 @@ export const savePost = async () => {
     e.preventDefault();
     const postText = postCreater.textDescription;
     if (postText.value === '') {
-      alert('Mensaje vacío.\n Escriba algo para poder compartir.');
+      showModal('Mensaje vacío. <br> Escriba algo para poder compartir.');
     } else {
       // uid del autor
       newPost(postText.value, uid, userName).then(async (elemento) => {
@@ -104,9 +118,11 @@ export const savePost = async () => {
           <div class="postedBtns">
             <button class="likePosted">
               <i class="fas fa-heart"></i>
-              <p class="likeCount">
-                ${updatePosted.like.length}
-              </p>
+              <span>
+                <p class="likeCount">
+                  ${updatePosted.like.length}
+                </p>
+              </span>
             </button>
             <button class="editPosted" id="${postID}">
               <i class="fas fa-pencil-alt"></i>
@@ -123,7 +139,6 @@ export const savePost = async () => {
       });
       postCreater.reset();
       postText.focus();
-
       // postContainer.innerHTML = '';
       // loadPosts();
     }
@@ -133,7 +148,6 @@ export const savePost = async () => {
 export const editBtn = async () => {
   const postContainer = document.querySelector('.posted');
   const btnsEdit = document.querySelectorAll('.editPosted');
-
   btnsEdit.forEach((btn) => {
     btn.addEventListener('click', async () => {
       const postName = '#postN' + btn.id;
@@ -141,6 +155,7 @@ export const editBtn = async () => {
       const postToEdit = document.querySelector(postName);
       const secNameEdit = document.querySelector(secName);
       console.log(secNameEdit);
+      secNameEdit.style.display = 'hidden';
       const modalEdit = `
       <div class="postedOne postEdit">
         <div class="postedText textToEdit">
@@ -157,10 +172,7 @@ export const editBtn = async () => {
       </div>
       `;
       postToEdit.innerHTML += modalEdit;
-      secNameEdit.style.display = 'none';
       const textToEdit = document.querySelector('.newText');
-      // console.log(textToEdit);
-      // console.log('editing', btn.id);
       const idBtn = btn.id;
       const edText = await editingText(idBtn);
       const textForEdit = edText.data().description;
@@ -189,13 +201,10 @@ const updatePost = async () => {
 };
 
 const cancelUpdate = () => {
-  const postContainer = document.querySelector('.posted');
   const cancelBtn = document.querySelector('.cancelChange');
   const postEdit = document.querySelector('.postEdit');
   cancelBtn.addEventListener('click', () => {
     postEdit.style.display = 'none';
-    postContainer.innerHTML = '';
-    loadPosts();
   });
 };
 
@@ -225,6 +234,7 @@ const likeFunction = () => {
           like: [...liked, iD],
         });
         counter.textContent = liked.length + 1;
+        likeBtn.forEach.color = red;
       }
     });
   });

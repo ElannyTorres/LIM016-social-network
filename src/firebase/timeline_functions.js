@@ -1,3 +1,6 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable function-paren-newline */
+/* eslint-disable comma-dangle */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 /* eslint-disable prefer-template */
@@ -5,6 +8,7 @@
 /* /* /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import { userState } from './auth_functions.js';
+import { showModal } from '../views/showModal.js';
 
 import {
   newPost,
@@ -26,13 +30,24 @@ userState((user) => {
 });
 
 export const deleteBtn = async () => {
-  const postContainer = document.querySelector('.posted');
+  // const postContainer = document.querySelector('.posted');
   const btnsDelete = document.querySelectorAll('.deletePosted');
   btnsDelete.forEach((btn) => {
     btn.addEventListener('click', async () => {
-      deletePost(btn.id);
-      postContainer.innerHTML = '';
-      loadPosts();
+      showModal('Estás a punto de eliminar el post. <br> ¿Estás seguro?');
+      const agreeBtn = document.querySelector('.agreeBtn');
+      console.log(agreeBtn);
+      const postN = '#postN' + btn.id;
+      console.log(postN);
+      agreeBtn.addEventListener('click', async () => {
+        const postToDelete = document.querySelector(postN);
+        console.log(postToDelete);
+        postToDelete.innerHTML = '';
+        deletePost(btn.id);
+      });
+      // deletePost(btn.id);
+      // postContainer.innerHTML = '';
+      // loadPosts();
     });
   });
 };
@@ -80,7 +95,7 @@ export const savePost = async () => {
     e.preventDefault();
     const postText = postCreater.textDescription;
     if (postText.value === '') {
-      alert('Mensaje vacío.\n Escriba algo para poder compartir.');
+      showModal('Mensaje vacío. <br> Escriba algo para poder compartir.');
     } else {
       // uid del autor
       newPost(postText.value, uid, userName).then(async (elemento) => {
@@ -124,7 +139,6 @@ export const savePost = async () => {
       });
       postCreater.reset();
       postText.focus();
-
       // postContainer.innerHTML = '';
       // loadPosts();
     }
@@ -220,6 +234,7 @@ const likeFunction = () => {
           like: [...liked, iD],
         });
         counter.textContent = liked.length + 1;
+        likeBtn.forEach.color = red;
       }
     });
   });

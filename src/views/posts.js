@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
+import { showModal } from './showModal.js';
+
 export default () => {
   let profileData = JSON.parse(sessionStorage.userData);
   const views = `
@@ -23,6 +26,7 @@ export default () => {
   </form>
   <div class="posted">
   </div>
+  <div id="modal"></div>
   </section>
   <footer>
   <div class="titleContainer">

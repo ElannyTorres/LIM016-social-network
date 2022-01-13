@@ -190,6 +190,21 @@ input {
 }
 
 /* Post */
+.modalContent {
+  background-color: red;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 5;
+  margin-top: -155%;
+}
+.hideIt {
+  display: none;
+}
 .titleContainer {
   background-color: rgba(216, 178, 1, 1);
   width: 100%;
@@ -207,7 +222,9 @@ input {
   color: #edf2f4;
 }
 .profilePhoto > img {
-  width: 7rem;
+  width: 6rem;
+  margin: 1rem;
+  border-radius: 50%;
 }
 .name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -467,14 +484,20 @@ input {
     border: 1px solid white;
     margin: 0.5rem;
     padding: 0.5rem;
-    width: 13rem;
+    width: 17rem;
   }
   .profilePhoto > img {
     width: 5.5rem;
   }
-  /*  .profileInfo {
-    width: 8rem;
-  } */
+  .profileInfo {
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .name {
+    justify-content: center;
+  }
   .profileOne {
     display: flex;
     align-items: center;
@@ -486,8 +509,10 @@ input {
   }
   .postContainer {
     grid-column: 2/4;
-    width: 53rem;
+    width: 26rem;
     margin-top: 1.5rem;
+    margin-left: 26rem;
+    width: 1rem;
   }
   #postForm {
     width: 34rem;
@@ -508,7 +533,7 @@ input {
     width: 54rem;
   }
   .postedOne {
-    width: 52rem;
+    width: 34rem;
   }
   .postedOneTitle,
   .postedText {
@@ -526,6 +551,10 @@ input {
     justify-content: center;
   }
   .containerProfile {
+    width: 30rem;
+    margin-left: 25rem;
+  }
+  .infoProfile {
     width: 30rem;
   }
   .coverPhoto {

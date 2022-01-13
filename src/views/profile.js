@@ -1,8 +1,7 @@
 /* eslint-disable prefer-const */
+const profileData = JSON.parse(sessionStorage.userData);
 export default () => {
 // let dataInitial = sessionStorage.getItem('userData');
-  const profileData = JSON.parse(sessionStorage.userData);
-
   const views = `
     <section id="profileSection">
     <div class="containerProfile">

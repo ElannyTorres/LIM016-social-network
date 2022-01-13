@@ -28,6 +28,10 @@ body {
 #root > div {
   padding-bottom: 4rem;
 }
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
 footer {
   display: flex;
   flex-direction: row;
@@ -58,10 +62,6 @@ footer ul li a:hover {
 }
 button {
   background: rgba(216, 178, 1, 1);
-  cursor: pointer;
-}
-a {
-  text-decoration: none;
   cursor: pointer;
 }
 
@@ -162,6 +162,11 @@ input {
   margin: 0;
   padding: 2rem;
 }
+.profilePhoto > img {
+  width: 6rem;
+  margin: 1rem;
+  border-radius: 50%;
+}
 .singUp .img-chef {
   display: flex;
   align-content: center;
@@ -220,11 +225,6 @@ input {
   align-items: center;
   justify-content: center;
   color: #edf2f4;
-}
-.profilePhoto > img {
-  width: 6rem;
-  margin: 1rem;
-  border-radius: 50%;
 }
 .name {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -509,7 +509,6 @@ input {
   }
   .postContainer {
     grid-column: 2/4;
-    width: 26rem;
     margin-top: 1.5rem;
     margin-left: 26rem;
     width: 1rem;

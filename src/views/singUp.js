@@ -1,11 +1,7 @@
-/* eslint-disable spaced-comment */
-/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import {
-  singUpGmail,
-} from '../firebase/auth_functions.js';
+import { singUpGmail } from '../firebase/auth_functions.js';
 
 import {
   auth,
@@ -15,9 +11,7 @@ import {
   register,
 } from '../firebase/app.js';
 
-import {
-  dataUser,
-} from '../firebase/firestore.js';
+import { dataUser } from '../firebase/firestore.js';
 
 export const singUp = () => {
   const divElement = document.createElement('div');
@@ -82,8 +76,8 @@ export const registrar = () => {
     const lastName = document.getElementById('inputLastName').value;
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    //auth();
-    //register(email, password);
+    // auth();
+    // register(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -148,9 +142,17 @@ export const authGoogle = () => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-       dataUser(result.user.uid, result.user.displayName, result.user.email, result.user.displayName);
+        dataUser(
+          result.user.uid,
+          result.user.displayName,
+          result.user.email,
+          result.user.displayName,
+        );
 
-       sessionStorage.setItem('userData', JSON.stringify(result.user.reloadUserInfo));
+        sessionStorage.setItem(
+          'userData',
+          JSON.stringify(result.user.reloadUserInfo),
+        );
         if (typeof result === 'object') {
           window.location.hash = '#/posts';
         }

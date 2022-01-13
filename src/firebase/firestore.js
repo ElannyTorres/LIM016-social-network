@@ -1,21 +1,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import {
-  // app,
   db,
-  // getFirestore,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
   deleteDoc,
@@ -68,6 +59,11 @@ export const editingText = async (id) => {
   return getDoc(refEdit);
 };
 
+export const searchID = async (id) => {
+  const refID = await doc(db, 'usuarios', id);
+  return getDoc(refID);
+};
+
 export const updateDocu = async (id, docu) => {
   const docToUpdate = await doc(db, 'posts', id);
   return updateDoc(docToUpdate, docu);
@@ -76,9 +72,3 @@ export const updateDocu = async (id, docu) => {
 // const updateText = await updateDoc(doc, {
 //   description: textUpdating.value,
 // });
-/*
-export const infoUser = async (id) => {
-  const doc = await doc(db, 'usuarios', id);
-  return getDoc(doc);
-};
-console.log(infoUser)*/

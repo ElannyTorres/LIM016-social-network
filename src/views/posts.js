@@ -3,7 +3,7 @@
 import { showModal } from './showModal.js';
 
 export default () => {
-  let profileData = JSON.parse(sessionStorage.userData);
+  const profileData = JSON.parse(sessionStorage.userData);
   const views = `
     <section class="profile">
   <div class="profilePhoto">

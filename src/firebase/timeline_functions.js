@@ -16,6 +16,7 @@ import {
   editingText,
   updateDocu,
   deletePost,
+  searchID,
 } from './firestore.js';
 
 let uid = '';
@@ -212,29 +213,49 @@ const likeFunction = () => {
   const likeBtn = document.querySelectorAll('.likePosted');
   likeBtn.forEach((e) => {
     e.addEventListener('click', async () => {
+      console.log('click en like');
+      const profileDataG = JSON.parse(sessionStorage.userData);
+      const newId = profileDataG.localId;
+      const ID = await searchID(newId);
+      const user = ID.data().idUser;
       const hnSgt = e.nextElementSibling;
       const postID = hnSgt.id;
       const postInfo = await editingText(postID);
       const liked = postInfo.data().like;
-      console.log(liked);
       const iD = sessionStorage.userID;
 
       const counter = e.querySelector('.likeCount');
-      console.log(counter);
 
-      if (liked.includes(iD)) {
-        console.log('Si ha estado');
-        updateDocu(postID, {
-          like: liked.filter((item) => item !== iD),
-        });
-        counter.textContent = liked.length - 1;
+      if (iD === undefined) {
+        console.log('gmail');
+        if (liked.includes(user)) {
+          console.log('Si ha estado');
+          updateDocu(postID, {
+            like: liked.filter((item) => item !== user),
+          });
+          counter.textContent = liked.length - 1;
+        } else {
+          console.log('No ha estado');
+          updateDocu(postID, {
+            like: [...liked, user],
+          });
+          counter.textContent = liked.length + 1;
+        }
       } else {
-        console.log('No ha estado');
-        updateDocu(postID, {
-          like: [...liked, iD],
-        });
-        counter.textContent = liked.length + 1;
-        likeBtn.forEach.color = red;
+        console.log('correo normal');
+        if (liked.includes(iD)) {
+          console.log('Si ha estado');
+          updateDocu(postID, {
+            like: liked.filter((item) => item !== iD),
+          });
+          counter.textContent = liked.length - 1;
+        } else {
+          console.log('No ha estado');
+          updateDocu(postID, {
+            like: [...liked, iD],
+          });
+          counter.textContent = liked.length + 1;
+        }
       }
     });
   });

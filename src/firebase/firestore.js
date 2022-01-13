@@ -68,6 +68,11 @@ export const editingText = async (id) => {
   return getDoc(refEdit);
 };
 
+export const searchID = async (id) => {
+  const refID = await doc(db, 'usuarios', id);
+  return getDoc(refID);
+};
+
 export const updateDocu = async (id, docu) => {
   const docToUpdate = await doc(db, 'posts', id);
   return updateDoc(docToUpdate, docu);

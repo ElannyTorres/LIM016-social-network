@@ -3,9 +3,7 @@
 /* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
-import {
-  singUpGmail,
-} from '../firebase/auth_functions.js';
+import { singUpGmail } from '../firebase/auth_functions.js';
 
 import {
   auth,
@@ -15,9 +13,7 @@ import {
   register,
 } from '../firebase/app.js';
 
-import {
-  dataUser,
-} from '../firebase/firestore.js';
+import { dataUser } from '../firebase/firestore.js';
 
 export const singUp = () => {
   const divElement = document.createElement('div');
@@ -82,7 +78,7 @@ export const registrar = () => {
     const lastName = document.getElementById('inputLastName').value;
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
-    auth();
+    // auth();
     //register(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -92,16 +88,24 @@ export const registrar = () => {
           const registro = document.querySelector('.buttonRegistrar');
           registro.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
+          const errorInvalidEmail = document.querySelector(
+            '.requisito-invalidEmail'
+          );
           errorInvalidEmail.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
+          const errorEmailInUse = document.querySelector(
+            '.requisito-emailInUse'
+          );
           errorEmailInUse.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
+          const errorPasswordVulnerable = document.querySelector(
+            '.requisito-passwordVulnerable'
+          );
           errorPasswordVulnerable.style.display = 'none';
 
-          const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
+          const loginDesdeRegistrar = document.querySelector(
+            '.loginDesdeRegistrar'
+          );
           const login = document.createElement('button');
           login.innerHTML = `<button class="button-login" id="button-login">
         <a href="#/" id="profile">login</a></button>`;
@@ -118,7 +122,9 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
+          const errorInvalidEmail = document.querySelector(
+            '.requisito-invalidEmail'
+          );
           errorInvalidEmail.style.display = 'block';
         } else if (
           error.message === 'Firebase: Error (auth/email-already-in-use).'
@@ -126,15 +132,20 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
+          const errorEmailInUse = document.querySelector(
+            '.requisito-emailInUse'
+          );
           errorEmailInUse.style.display = 'block';
         } else if (
-          error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).'
+          error.message ===
+          'Firebase: Password should be at least 6 characters (auth/weak-password).'
         ) {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
+          const errorPasswordVulnerable = document.querySelector(
+            '.requisito-passwordVulnerable'
+          );
           errorPasswordVulnerable.style.display = 'block';
         }
       });
@@ -148,9 +159,17 @@ export const authGoogle = () => {
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-       dataUser(result.user.uid, result.user.displayName, result.user.email, result.user.displayName);
+        dataUser(
+          result.user.uid,
+          result.user.displayName,
+          result.user.email,
+          result.user.displayName
+        );
 
-       sessionStorage.setItem('userData', JSON.stringify(result.user.reloadUserInfo));
+        sessionStorage.setItem(
+          'userData',
+          JSON.stringify(result.user.reloadUserInfo)
+        );
         if (typeof result === 'object') {
           window.location.hash = '#/posts';
         }

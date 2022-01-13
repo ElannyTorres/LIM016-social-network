@@ -1,5 +1,5 @@
 // importamos la funcion que vamos a testear
-import { myFunction } from '../src/lib/indice.js';
+import { loadPost } from '../src/firebase/timeline_functions.js';
 
 describe('myFunction', () => {
   it('debería ser una función', () => {

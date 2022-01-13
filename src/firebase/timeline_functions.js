@@ -23,6 +23,7 @@ let userName = '';
 
 userState((user) => {
   if (user) {
+    console.log(user)
     uid = user.uid;
     userName = user.displayName;
     // console.log(uid, user);

@@ -76,3 +76,9 @@ export const updateDocu = async (id, docu) => {
 // const updateText = await updateDoc(doc, {
 //   description: textUpdating.value,
 // });
+/*
+export const infoUser = async (id) => {
+  const doc = await doc(db, 'usuarios', id);
+  return getDoc(doc);
+};
+console.log(infoUser)*/

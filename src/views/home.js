@@ -69,6 +69,7 @@ export const Home = () => {
 
 export const login = () => {
   document.querySelector('.button-login').addEventListener('click', () => {
+    //sessionStorage.clear();
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
     console.log(email);

@@ -3,14 +3,17 @@
 import { showModal } from './showModal.js';
 
 export default () => {
-  let profileData = JSON.parse(sessionStorage.userData);
+  //let profileData = JSON.parse(sessionStorage.userData);
+  /*
+  <img src="${profileData.photoUrl}" alt="Profile Photo"></img>
+  <h4 class="name">${profileData.displayName}</h4>*/
   const views = `
     <section class="profile">
   <div class="profilePhoto">
-  <img src="${profileData.photoUrl}" alt="Profile Photo">
+  
   </div>
   <div class="profileInfo">
-  <h4 class="name">${profileData.displayName}</h4>
+  
   <h6 class="status">Amante de la comida</h6>
   </div>
   </section>
@@ -40,7 +43,6 @@ export default () => {
   </div>
   </footer>
         `;
-
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'postGridView');
   divElement.innerHTML = views;

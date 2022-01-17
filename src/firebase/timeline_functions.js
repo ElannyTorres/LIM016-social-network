@@ -27,7 +27,6 @@ userState((user) => {
     console.log(user)
     uid = user.uid;
     userName = user.displayName;
-    // console.log(uid, user);
   }
 });
 
@@ -47,18 +46,25 @@ export const deleteBtn = async () => {
         postToDelete.innerHTML = '';
         deletePost(btn.id);
       });
-      // deletePost(btn.id);
-      // postContainer.innerHTML = '';
-      // loadPosts();
     });
   });
 };
 
 export const loadPosts = async () => {
+  // Función con parámetro
+  const profileDataG = JSON.parse(sessionStorage.userData);
+  const newId = profileDataG.localId;
+  const ID = await searchID(newId); // Firebase
+  const user = ID.data().idUser;
+  const iD = sessionStorage.userID;
+  console.log(iD);
+  console.log(user);
   const postContainer = document.querySelector('.posted');
   const docRef = await querySnapshot();
   docRef.forEach((docs) => {
-    postContainer.innerHTML += `
+    if (user !== undefined || iD !== undefined) {
+      if ((user || iD) === docs.data().user) {
+        postContainer.innerHTML += `
     <div class="postedOne" id="postN${docs.id}">
     <section id="postSec${docs.id}">
       <div class="postedOneTitle">
@@ -68,7 +74,7 @@ export const loadPosts = async () => {
         <p>${docs.data().description}</p>
       </div>
       <div class="postedBtns">
-        <button class="likePosted">
+        <button class="likePosted" id="${docs.id}">
           <i class="fas fa-heart"></i>
           <p class="likeCount">
             ${docs.data().like.length}
@@ -84,6 +90,29 @@ export const loadPosts = async () => {
       </section>
     </div>
     `;
+      } else {
+        postContainer.innerHTML += `
+      <div class="postedOne" id="postN${docs.id}">
+      <section id="postSec${docs.id}">
+        <div class="postedOneTitle">
+          <p>Publicado por ${docs.data().autor}</p>
+        </div>
+        <div class="postedText">
+          <p>${docs.data().description}</p>
+        </div>
+        <div class="postedBtns">
+          <button class="likePosted" id="${docs.id}">
+            <i class="fas fa-heart"></i>
+            <p class="likeCount">
+              ${docs.data().like.length}
+            </p>
+          </button>
+        </div>
+        </section>
+      </div>
+      `;
+      }
+    }
   });
   editBtn();
   deleteBtn();
@@ -137,18 +166,15 @@ export const savePost = async () => {
         `;
         postContainer.prepend(newContainer);
         console.log(postContainer);
-        // console.log(newPosting);
       });
       postCreater.reset();
       postText.focus();
-      // postContainer.innerHTML = '';
-      // loadPosts();
     }
   });
 };
 
 export const editBtn = async () => {
-  const postContainer = document.querySelector('.posted');
+  // const postContainer = document.querySelector('.posted');
   const btnsEdit = document.querySelectorAll('.editPosted');
   btnsEdit.forEach((btn) => {
     btn.addEventListener('click', async () => {
@@ -211,21 +237,20 @@ const cancelUpdate = () => {
 };
 
 const likeFunction = () => {
-  const likeBtn = document.querySelectorAll('.likePosted');
+  const likeBtn = document.querySelectorAll('.likePosted'); // Dom virtual
   likeBtn.forEach((e) => {
     e.addEventListener('click', async () => {
-      console.log('click en like');
       const profileDataG = JSON.parse(sessionStorage.userData);
       const newId = profileDataG.localId;
-      const ID = await searchID(newId);
+      const ID = await searchID(newId); // Firebase
       const user = ID.data().idUser;
-      const hnSgt = e.nextElementSibling;
-      const postID = hnSgt.id;
+      const postID = e.id;
       const postInfo = await editingText(postID);
       const liked = postInfo.data().like;
       const iD = sessionStorage.userID;
+      console.log('click en like');
 
-      const counter = e.querySelector('.likeCount');
+      const counter = e.querySelector('.likeCount'); // DOm virtual
 
       if (iD === undefined) {
         console.log('gmail');

@@ -1,3 +1,6 @@
+/* eslint-disable comma-dangle */
+/* eslint-disable spaced-comment */
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 /* eslint-disable indent */
 /* eslint-disable no-unused-vars */
@@ -123,6 +126,9 @@ export const registrar = () => {
           const errorEmailInUse = document.querySelector('.requisito-emailInUse');
           errorEmailInUse.style.display = 'block';
         } else if (
+          // eslint-disable-next-line operator-linebreak
+          error.message ===
+          'Firebase: Password should be at least 6 characters (auth/weak-password).'
           error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).'
         ) {
           const requisito = document.querySelector('.requisito');

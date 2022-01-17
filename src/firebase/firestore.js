@@ -1,21 +1,12 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import {
-  // app,
   db,
-  // getFirestore,
   doc,
   setDoc,
   collection,
   addDoc,
-  // query,
-  // where,
   getDocs,
-  // getDatabase,
-  // ref,
-  // child,
-  // get,
-  // onValue,
   getDoc,
   updateDoc,
   deleteDoc,

@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable spaced-comment */
 /* eslint-disable max-len */
 /* eslint-disable no-console */
@@ -137,6 +138,7 @@ export const registrar = () => {
           );
           errorEmailInUse.style.display = 'block';
         } else if (
+          // eslint-disable-next-line operator-linebreak
           error.message ===
           'Firebase: Password should be at least 6 characters (auth/weak-password).'
         ) {

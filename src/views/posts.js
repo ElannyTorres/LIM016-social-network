@@ -1,16 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
-import { showModal } from './showModal.js';
 
 export default () => {
-  const profileData = JSON.parse(sessionStorage.userData);
+  // const profileData = JSON.parse(sessionStorage.userData);
   const views = `
     <section class="profile">
   <div class="profilePhoto">
-  <img src="${profileData.photoUrl}" alt="Profile Photo">
+  <img src="../img/foto.png" alt="Profile Photo">
   </div>
   <div class="profileInfo">
-  <h4 class="name">${profileData.displayName}</h4>
+  <h4 class="name">Fulana Suarez</h4>
   <h6 class="status">Amante de la comida</h6>
   </div>
   </section>

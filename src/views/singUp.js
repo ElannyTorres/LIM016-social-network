@@ -80,7 +80,7 @@ export const registrar = () => {
     const email = document.getElementById('inputEmail').value;
     const password = document.getElementById('inputPassword').value;
     // auth();
-    //register(email, password);
+    // register(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -89,24 +89,16 @@ export const registrar = () => {
           const registro = document.querySelector('.buttonRegistrar');
           registro.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector(
-            '.requisito-invalidEmail'
-          );
+          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
           errorInvalidEmail.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector(
-            '.requisito-emailInUse'
-          );
+          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
           errorEmailInUse.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector(
-            '.requisito-passwordVulnerable'
-          );
+          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
           errorPasswordVulnerable.style.display = 'none';
 
-          const loginDesdeRegistrar = document.querySelector(
-            '.loginDesdeRegistrar'
-          );
+          const loginDesdeRegistrar = document.querySelector('.loginDesdeRegistrar');
           const login = document.createElement('button');
           login.innerHTML = `<button class="button-login" id="button-login">
         <a href="#/" id="profile">login</a></button>`;
@@ -123,9 +115,7 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorInvalidEmail = document.querySelector(
-            '.requisito-invalidEmail'
-          );
+          const errorInvalidEmail = document.querySelector('.requisito-invalidEmail');
           errorInvalidEmail.style.display = 'block';
         } else if (
           error.message === 'Firebase: Error (auth/email-already-in-use).'
@@ -133,21 +123,18 @@ export const registrar = () => {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorEmailInUse = document.querySelector(
-            '.requisito-emailInUse'
-          );
+          const errorEmailInUse = document.querySelector('.requisito-emailInUse');
           errorEmailInUse.style.display = 'block';
         } else if (
           // eslint-disable-next-line operator-linebreak
           error.message ===
           'Firebase: Password should be at least 6 characters (auth/weak-password).'
+          error.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).'
         ) {
           const requisito = document.querySelector('.requisito');
           requisito.style.display = 'none';
 
-          const errorPasswordVulnerable = document.querySelector(
-            '.requisito-passwordVulnerable'
-          );
+          const errorPasswordVulnerable = document.querySelector('.requisito-passwordVulnerable');
           errorPasswordVulnerable.style.display = 'block';
         }
       });
@@ -165,12 +152,12 @@ export const authGoogle = () => {
           result.user.uid,
           result.user.displayName,
           result.user.email,
-          result.user.displayName
+          result.user.displayName,
         );
 
         sessionStorage.setItem(
           'userData',
-          JSON.stringify(result.user.reloadUserInfo)
+          JSON.stringify(result.user.reloadUserInfo),
         );
         if (typeof result === 'object') {
           window.location.hash = '#/posts';

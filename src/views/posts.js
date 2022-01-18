@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
 
+const profileData = JSON.parse(sessionStorage.userData);
+
 export default () => {
   // const profileData = JSON.parse(sessionStorage.userData);
   const views = `
@@ -39,7 +41,6 @@ export default () => {
   </div>
   </footer>
         `;
-
   const divElement = document.createElement('div');
   divElement.setAttribute('id', 'postGridView');
   divElement.innerHTML = views;

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable prefer-const */
 
-const profileData = JSON.parse(sessionStorage.userData);
+// const profileData = JSON.parse(sessionStorage.userData);
 
 export default () => {
   // const profileData = JSON.parse(sessionStorage.userData);

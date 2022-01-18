@@ -1,4 +1,5 @@
 import { Home, login, loginAuthGoogle } from './home.js';
+// eslint-disable-next-line import/named
 import { singUp, registrar, authGoogle } from './singUp.js';
 import {
   savePost,

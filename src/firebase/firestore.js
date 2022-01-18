@@ -29,14 +29,14 @@ export const dataUser = async (id, Username, Correo, Name) => {
 };
 
 /** creacion de usuario */
-export const userGoogle = async (id, result) => {
+/* export const userGoogle = async (id, result) => {
   const refId = await doc(db, 'usuarios', id);
   return setDoc(refId, {
     name: result.displayName,
     correo: result.email,
     uidUser: result.uid,
   });
-};
+}; */
 
 export const newPost = async (textPost, uid, userName) => {
   // eslint-disable-next-line no-unused-vars

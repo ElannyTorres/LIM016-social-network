@@ -1,5 +1,4 @@
 import { Home, login, loginAuthGoogle } from './home.js';
-// eslint-disable-next-line import/named
 import { singUp, registrar, authGoogle } from './singUp.js';
 import {
   savePost,
@@ -8,7 +7,9 @@ import {
   editBtn,
 } from '../firebase/timeline_functions.js';
 import Posts from './posts.js';
+import Links from './links.js';
 import Profile from './profile.js';
+import header from './header.js';
 import Default from './default.js';
 
 const components = {
@@ -19,11 +20,13 @@ const components = {
   },
   profile: Profile,
   posts: {
+    header,
     Posts,
     loadPosts,
     savePost,
     editBtn,
     deleteBtn,
+    Links,
   },
   default: Default,
   singUp: {

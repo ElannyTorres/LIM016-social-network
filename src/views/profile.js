@@ -14,7 +14,18 @@ export default () => {
         </div>
     </div>
     </section>
-
+    <section id="about">
+        <div id="aboutTitle">
+            <p>Un poco sobre mí</p>
+        </div>
+        <div id="datosExtras">
+            <ul>
+                <li>Ciudad</li>
+                <li>Gustos</li>
+                <li>Algo extra</li>
+            </ul>
+        </div>
+    </section>
     <footer>
         <div class="titleContainer">
             <ul>

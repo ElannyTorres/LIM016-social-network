@@ -32,6 +32,9 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+header {
+  display: none;
+}
 footer {
   display: flex;
   flex-direction: row;
@@ -254,9 +257,12 @@ input {
   height: 54%;
   border-radius: 0.7rem;
   border: none;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 .btnsToCreate {
   margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
   display: flex;
 }
 .btnsToCreate ul {
@@ -343,6 +349,9 @@ input {
 .fas {
   font-size: 2rem;
 }
+#linksGrid {
+  display: none;
+}
 
 /* Profile */
 .containerProfile {
@@ -373,6 +382,15 @@ input {
 }
 .profileInfo {
   color: white;
+}
+#about {
+  background: rgba(255, 255, 255, 0.5);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* 404 */
@@ -463,6 +481,9 @@ input {
   /* Header */
   #headerGrid {
     grid-column: 1/4;
+    z-index: 5;
+    position: fixed;
+    width: 100vw;
   }
   header > ul {
     display: flex;
@@ -473,8 +494,9 @@ input {
   }
   /* Timeline Section */
   #postGridView {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    margin-top: 4rem;
+    margin-bottom: 0rem;
   }
   .profile {
     grid-column: 1/2;
@@ -510,7 +532,7 @@ input {
   .postContainer {
     grid-column: 2/4;
     margin-top: 1.5rem;
-    margin-left: 26rem;
+    margin-left: 21rem;
     width: 1rem;
   }
   #postForm {
@@ -541,6 +563,37 @@ input {
   .postedOneTitle {
     margin-right: 0;
   }
+  #linksGrid {
+    grid-column: 3/4;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+  }
+  #linksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #lista {
+    list-style: none;
+    margin-left: -1.5rem;
+  }
+  #lista li {
+    display: flex;
+    justify-content: center;
+  }
+  #lista li img {
+    width: 15rem;
+    border: 2px solid black;
+    cursor: pointer;
+  }
+  #lista li img:hover {
+    border-radius: 2rem;
+    border: 2px solid yellow;
+  }
   /* Profile Section */
   #viewProfileGrid {
     grid-column: 1/4;
@@ -561,6 +614,18 @@ input {
   }
   /* Footer */
   #sectionsContainerFooter > ul {
+    display: none;
+  }
+  header {
+    display: flex;
+  }
+  #headerGrid ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+  }
+  footer {
     display: none;
   }
 }

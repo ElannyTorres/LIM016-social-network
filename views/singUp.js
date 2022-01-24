@@ -20,13 +20,15 @@ export const singUp = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = `
   <section class="singUp">
+    <div id="bienvenida">
       <h1 class="title">Bienvenido/a</h1>
-      <div class="img-chef">
+      <div class="img-chef" id="signupImg">
           <img src="img/logoimg2.png" alt="" class="chef">
       </div>
-      <div>
       <h3 class="title">!Que vivan las recetas!</h3>
-      <div class="form-email">
+    </div>
+      <div id="generalForm">
+        <div class="form-email">
           <div class="regístrate">
           <input type="text" class="form-control" id="inputName" placeholder="Nombres" required>
           </div>
@@ -53,19 +55,11 @@ export const singUp = () => {
           </div>
           <div class="loginDesdeRegistrar">
           <button class="buttonRegistrar" id="buttonRegistrar"><a id="profile">Registrar</a></button>
-          </div>
-      </div>
-      <h3 class="profileInfo">O bien ingresa con..</h3>
-      <div class="social-media">
-          <div class="face">
-          <a href="https://www.facebook.com/" ><img src="https://cdn.icon-icons.com/icons2/91/PNG/512/facebook_16423.png" alt=""class="url-face"></a>
-          </div>
-          <div class="gmail">
-          <img src="https://sitelabs.es/wp-content/uploads/2017/12/google-logo-1-800x800.png" alt="" class="url-gmail" id="url-gmail"></a>
-          </div>
+        </div>
+        <br>
+        <div class="return"><a href="#/"><i class="fas fa-chevron-left"></i></a></div>
       </div>
       </div>
-      <div class="return"><a href="#/"><i class="fas fa-chevron-left"></i></a></div>
   </section>
       `;
 

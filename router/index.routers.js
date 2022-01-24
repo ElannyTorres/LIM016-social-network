@@ -20,6 +20,7 @@ const router = (route) => {
       break;
     case '#/profile':
       content.appendChild(components.posts.header());
+      components.posts.cerrarSesion();
       content.appendChild(components.profile());
       break;
     case '#/posts':
@@ -29,6 +30,7 @@ const router = (route) => {
       components.posts.savePost();
       components.posts.editBtn();
       components.posts.deleteBtn();
+      components.posts.cerrarSesion();
       content.appendChild(components.posts.Links());
       break;
     default:

@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
@@ -11,9 +12,7 @@ import {
 
 import { app } from '../firebase/app.js';
 
-import {
-  dataUser,
-} from '../firebase/firestore.js';
+import { dataUser } from '../firebase/firestore.js';
 
 export const Home = () => {
   const views = `
@@ -136,8 +135,16 @@ export const loginAuthGoogle = () => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        dataUser(result.user.uid, result.user.displayName, result.user.email, result.user.displayName);
-        sessionStorage.setItem('userData', JSON.stringify(result.user.reloadUserInfo));
+        dataUser(
+          result.user.uid,
+          result.user.displayName,
+          result.user.email,
+          result.user.displayName
+        );
+        sessionStorage.setItem(
+          'userData',
+          JSON.stringify(result.user.reloadUserInfo)
+        );
         // The signed-in user info.
         const user = result.user;
         if (typeof user === 'object') {

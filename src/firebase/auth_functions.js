@@ -1,8 +1,5 @@
-import {
-  auth,
-  signInWithPopup,
-  onAuthStateChanged,
-} from './app.js';
+/* eslint-disable object-curly-newline */
+import { signInWithPopup, onAuthStateChanged, auth, signOut } from './app.js';
 
 /** id de usuario */
 export function userState(user) {
@@ -12,3 +9,6 @@ export function userState(user) {
 export function singUpGmail(provider) {
   return signInWithPopup(auth, provider);
 }
+
+/* Cerrar sesión */
+export const cierreDeSesion = () => signOut(auth);

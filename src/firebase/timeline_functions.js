@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable function-paren-newline */
 /* eslint-disable comma-dangle */
@@ -5,7 +6,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable prefer-template */
 /* eslint-disable no-unused-vars */
-/* /* /* eslint-disable import/no-unresolved */
+/*  eslint-disable import/no-unresolved */
 /* eslint-disable no-console */
 import { userState } from './auth_functions.js';
 import { showModal } from '../views/showModal.js';
@@ -40,6 +41,7 @@ export const deleteBtn = async () => {
       console.log(agreeBtn);
       const postN = '#postN' + btn.id;
       console.log(postN);
+      console.log(btn.id);
       agreeBtn.addEventListener('click', async () => {
         const postToDelete = document.querySelector(postN);
         console.log(postToDelete);
@@ -53,6 +55,7 @@ export const deleteBtn = async () => {
 export const loadPosts = async () => {
   // Función con parámetro
   const profileDataG = JSON.parse(sessionStorage.userData);
+  console.log(profileDataG);
   const newId = profileDataG.localId;
   const ID = await searchID(newId); // Firebase
   const user = ID.data().idUser;
@@ -75,7 +78,8 @@ export const loadPosts = async () => {
       </div>
       <div class="postedBtns">
         <button class="likePosted" id="${docs.id}">
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart noliked" id="show${docs.id}"></i>
+          <i class="fas fa-heart liked" id="" style="display: none;"></i>
           <p class="likeCount">
             ${docs.data().like.length}
           </p>
@@ -103,6 +107,9 @@ export const loadPosts = async () => {
         <div class="postedBtns">
           <button class="likePosted" id="${docs.id}">
             <i class="fas fa-heart"></i>
+            <i class="fas fa-heart liked" id="show${
+              docs.id
+            }" style="display: none;"></i>
             <p class="likeCount">
               ${docs.data().like.length}
             </p>
@@ -166,6 +173,9 @@ export const savePost = async () => {
         `;
         postContainer.prepend(newContainer);
         console.log(postContainer);
+        editBtn();
+        deleteBtn();
+        likeFunction();
       });
       postCreater.reset();
       postText.focus();
@@ -240,6 +250,10 @@ const likeFunction = () => {
   const likeBtn = document.querySelectorAll('.likePosted'); // Dom virtual
   likeBtn.forEach((e) => {
     e.addEventListener('click', async () => {
+      const likedid = '#show' + e.id;
+      console.log(likedid);
+      const likedbtn = e.querySelector(likedid);
+      console.log(likedbtn);
       const profileDataG = JSON.parse(sessionStorage.userData);
       const newId = profileDataG.localId;
       const ID = await searchID(newId); // Firebase
@@ -281,6 +295,7 @@ const likeFunction = () => {
             like: [...liked, iD],
           });
           counter.textContent = liked.length + 1;
+          likedbtn.style.display = 'block';
         }
       }
     });

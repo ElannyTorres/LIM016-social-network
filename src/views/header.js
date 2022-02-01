@@ -29,7 +29,7 @@ export const cerrarSesion = () => {
         window.location.hash = '#/';
       })
       .catch((error) => {
-        console.log(error);
+        throw error;
       });
   });
 };

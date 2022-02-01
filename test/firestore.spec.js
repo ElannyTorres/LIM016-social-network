@@ -80,7 +80,6 @@ describe('searchID', () => {
   it('buscar un determinado id', async () => {
     await searchID('1305');
     expect(doc.mock.calls[0][2]).toBe('1305');
-    console.log(getDoc.mock.calls[0]);
     expect(typeof getDoc.mock.calls[0][0]).toBe('object');
   });
 });

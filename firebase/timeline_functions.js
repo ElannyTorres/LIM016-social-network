@@ -38,13 +38,9 @@ export const deleteBtn = async () => {
     btn.addEventListener('click', async () => {
       showModal('Estás a punto de eliminar el post. <br> ¿Estás seguro?');
       const agreeBtn = document.querySelector('.agreeBtn');
-      console.log(agreeBtn);
       const postN = '#postN' + btn.id;
-      console.log(postN);
-      console.log(btn.id);
       agreeBtn.addEventListener('click', async () => {
         const postToDelete = document.querySelector(postN);
-        console.log(postToDelete);
         postToDelete.innerHTML = '';
         deletePost(btn.id);
       });
@@ -172,7 +168,6 @@ export const savePost = async () => {
           </section>
         `;
         postContainer.prepend(newContainer);
-        console.log(postContainer);
         editBtn();
         deleteBtn();
         likeFunction();

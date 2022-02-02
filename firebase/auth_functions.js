@@ -11,4 +11,6 @@ export function singUpGmail(provider) {
 }
 
 /* Cerrar sesión */
-export const cierreDeSesion = () => signOut(auth);
+export function cierreDeSesion() {
+  return signOut(auth);
+}
